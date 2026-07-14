@@ -1,0 +1,188 @@
+{
+  "verified": [
+    {
+      "fact_id": "F1_RUNNING_VOLTAGE",
+      "category": "spec",
+      "statement": "With the engine running at roughly 2000-3000 RPM, DC voltage measured across the battery terminals should read approximately 13.0V to 14.7V (some sources tolerate up to 15V) if the charging system is healthy.",
+      "status": "VERIFIED",
+      "independent_domain_count": 4,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/753075-charging-system-problem.html",
+        "https://usamotorcycling.com/harley-charging-system-troubleshooting-guide/",
+        "https://www.hdforums.com/forum/touring-models/1144930-charging-system-not-charging-sometimes.html",
+        "https://www.reddit.com/r/Harley/comments/15cd7hg/need_help_98_softail_wont_charge/"
+      ],
+      "numeric_range": {
+        "min": 13.0,
+        "max": 14.7,
+        "absolute_max_before_fault": 15.0,
+        "unit": "VDC"
+      },
+      "notes": "Corroborated by 4 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F2_LOW_VOLTAGE_STATOR",
+      "category": "diagnostic_rule",
+      "statement": "If running voltage measures below ~13V, suspect the stator (charging system is undercharging).",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdforums.com/forum/touring-models/1144930-charging-system-not-charging-sometimes.html",
+        "https://www.reddit.com/r/Harley/comments/15cd7hg/need_help_98_softail_wont_charge/",
+        "https://www.lawabidingbiker.com/134/"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F3_HIGH_VOLTAGE_REGULATOR",
+      "category": "diagnostic_rule",
+      "statement": "If running voltage exceeds ~15V, suspect the voltage regulator/rectifier (overcharging). Overcharging eventually damages ('cooks') the battery and can cause bulbs/electronics to fail.",
+      "status": "VERIFIED",
+      "independent_domain_count": 4,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdforums.com/forum/touring-models/1144930-charging-system-not-charging-sometimes.html",
+        "https://www.reddit.com/r/Harley/comments/15cd7hg/need_help_98_softail_wont_charge/",
+        "https://www.youtube.com/watch?v=VeFK60pYLL0",
+        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
+        "https://www.youtube.com/watch?v=JIaH8x_FS9g"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 4 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F4_STATOR_AC_OUTPUT_TEST",
+      "category": "procedure",
+      "statement": "Stator AC output test: unplug the stator-to-regulator connector, set a multimeter to AC volts, start/rev the engine, and measure AC voltage across the stator pins. Typical output is roughly 16-26 VAC per 1000 RPM depending on the system's amp rating (varies by model/year - consult the factory service manual for exact spec). Never disconnect or reconnect the stator plug while the engine is running - it can destroy the stator.",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html",
+        "https://www.hdforums.com/forum/touring-models/235858-charging-system.html",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/753075-charging-system-problem.html",
+        "https://www.youtube.com/watch?v=nGaeyxxWzRg",
+        "https://usamotorcycling.com/harley-charging-system-troubleshooting-guide/"
+      ],
+      "numeric_range": {
+        "min_per_1000rpm": 16,
+        "max_per_1000rpm": 26,
+        "unit": "VAC",
+        "note": "varies by amp rating of system (e.g. 22A vs 32A)"
+      },
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F5_STATOR_RESISTANCE_TEST",
+      "category": "procedure",
+      "statement": "Stator resistance test: with the stator disconnected, resistance across the stator pins typically reads about 0.1-0.5 ohms depending on the system. A much higher reading or an open circuit indicates a broken winding (bad stator).",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/753075-charging-system-problem.html",
+        "https://www.hdforums.com/forum/touring-models/235858-charging-system.html",
+        "https://usamotorcycling.com/harley-charging-system-troubleshooting-guide/"
+      ],
+      "numeric_range": {
+        "min": 0.1,
+        "max": 0.5,
+        "unit": "ohms"
+      },
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F8_BATTERY_FIRST_RULE",
+      "category": "diagnostic_rule",
+      "statement": "A weak or bad battery produces symptoms that look identical to a charging system failure. Always fully charge and load-test the battery FIRST before condemning the stator or regulator - otherwise all subsequent tests are unreliable.",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.youtube.com/watch?v=jUIpCVMIVco",
+        "https://www.youtube.com/watch?v=zGekG6Uahng",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://wheelingaway.com/harley-davidson-battery-not-charging/"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F9_STATIC_VOLTAGE_SPEC",
+      "category": "spec",
+      "statement": "Standing/static battery voltage (engine off, fully charged, rested) should read approximately 12.5V to 13.2V DC. Readings meaningfully below 12.4V indicate the battery itself needs charging or may be failing.",
+      "status": "VERIFIED",
+      "independent_domain_count": 4,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://usamotorcycling.com/harley-charging-system-troubleshooting-guide/",
+        "https://www.reddit.com/r/Harley/comments/15cd7hg/need_help_98_softail_wont_charge/",
+        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html",
+        "https://wheelingaway.com/harley-davidson-battery-not-charging/"
+      ],
+      "numeric_range": {
+        "min": 12.5,
+        "max": 13.2,
+        "fault_threshold_below": 12.4,
+        "unit": "VDC"
+      },
+      "notes": "Corroborated by 4 independent domains (threshold 3)."
+    }
+  ],
+  "rejected_or_pending": [
+    {
+      "fact_id": "F6_STATOR_GROUND_TEST",
+      "category": "procedure",
+      "statement": "Stator ground test: with the stator disconnected, there should be NO continuity between any stator pin and the frame/engine ground. Continuity to ground means the stator is shorted (bad).",
+      "status": "NEEDS_MORE_SOURCES",
+      "independent_domain_count": 2,
+      "confidence": "LOW",
+      "citations": [
+        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
+        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://www.hdforums.com/forum/touring-models/1144930-charging-system-not-charging-sometimes.html"
+      ],
+      "numeric_range": null,
+      "notes": "Only 2 independent domain(s) found (threshold 3). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
+    },
+    {
+      "fact_id": "F7_REGULATOR_BLEED_BACK_TEST",
+      "category": "procedure",
+      "statement": "Voltage regulator bleed-back test: with the regulator unplugged from the stator (battery still connected), probe the regulator's output-side pins with a test light or voltmeter referenced to battery negative. Any voltage or illumination means the regulator is bad ('leaking' voltage).",
+      "status": "NEEDS_MORE_SOURCES",
+      "independent_domain_count": 2,
+      "confidence": "LOW",
+      "citations": [
+        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/753075-charging-system-problem.html"
+      ],
+      "numeric_range": null,
+      "notes": "Only 2 independent domain(s) found (threshold 3). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
+    },
+    {
+      "fact_id": "F10_GROUND_MIMICS_FAILURE",
+      "category": "safety_and_diagnostic_rule",
+      "statement": "Bad or corroded ground connections (battery-to-frame, regulator-to-frame) commonly mimic stator or regulator failure. Inspect and clean all ground connections before replacing any electrical component.",
+      "status": "NEEDS_MORE_SOURCES",
+      "independent_domain_count": 2,
+      "confidence": "LOW",
+      "citations": [
+        "https://www.youtube.com/watch?v=Af9_j_9ohuY",
+        "https://www.youtube.com/watch?v=kglxbw8qRiQ",
+        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html"
+      ],
+      "numeric_range": null,
+      "notes": "Only 2 independent domain(s) found (threshold 3). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
+    }
+  ]
+}
