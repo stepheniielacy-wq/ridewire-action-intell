@@ -1,6 +1,30 @@
 {
   "domain": "Harley-Davidson Charging System Diagnostics (Battery / Stator / Voltage Regulator-Rectifier)",
   "pilot_note": "First real Hourglass pilot dataset. Gathered by 'The Learner' via live web search on 2026-07-14, cross-checked by 'The Debater', formatted by 'The Teacher'. This is a starting slice, not full 205-model Harley coverage.",
+  "diy_order": [
+    "F8_BATTERY_FIRST_RULE",
+    "F9_STATIC_VOLTAGE_SPEC",
+    "F1_RUNNING_VOLTAGE",
+    "F2_LOW_VOLTAGE_STATOR",
+    "F3_HIGH_VOLTAGE_REGULATOR",
+    "F10_GROUND_MIMICS_FAILURE",
+    "F4_STATOR_AC_OUTPUT_TEST",
+    "F5_STATOR_RESISTANCE_TEST",
+    "F6_STATOR_GROUND_TEST",
+    "F7_REGULATOR_BLEED_BACK_TEST"
+  ],
+  "diy_titles": {
+    "F8_BATTERY_FIRST_RULE": "Check the battery first",
+    "F9_STATIC_VOLTAGE_SPEC": "Test the battery at rest",
+    "F1_RUNNING_VOLTAGE": "Test the battery while the engine runs",
+    "F2_LOW_VOLTAGE_STATOR": "Low reading? It's probably the stator",
+    "F3_HIGH_VOLTAGE_REGULATOR": "High reading? It's probably the regulator",
+    "F10_GROUND_MIMICS_FAILURE": "Check your grounds before buying parts",
+    "F4_STATOR_AC_OUTPUT_TEST": "Test the stator directly",
+    "F5_STATOR_RESISTANCE_TEST": "Test the stator with the engine off",
+    "F6_STATOR_GROUND_TEST": "Make sure the stator isn't shorted",
+    "F7_REGULATOR_BLEED_BACK_TEST": "Test the regulator directly"
+  },
   "claims": [
     {
       "fact_id": "F1_RUNNING_VOLTAGE",

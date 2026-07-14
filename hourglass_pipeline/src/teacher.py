@@ -10,9 +10,18 @@ real, distinct output tiers as specified in the original brief:
 Both tiers are generated from the *same* verified data — this is the
 "expand and teach" step: once data clears the neck of the Hourglass, it is
 formatted outward for every audience without re-deriving the facts.
+
+GENERALIZATION NOTE (added when domain #2 was built):
+format_diy_report() used to have a hardcoded step order and title map that
+only worked for the charging-system domain's fact IDs. That meant every new
+domain silently produced an empty/broken DIY report. It is now data-driven:
+each claims_<domain>.json file may optionally supply "diy_order" (a list of
+fact_ids in roadside-sensible order) and "diy_titles" (a fact_id -> plain
+English title map). If a domain omits either, sensible generic fallbacks are
+used so a brand-new domain always renders a usable DIY report out of the box.
 """
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 
 def _fmt_citations(citations: List[str]) -> str:
@@ -40,7 +49,12 @@ def format_pro_report(domain: str, verified: List[Dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
-def format_diy_report(domain: str, verified: List[Dict[str, Any]]) -> str:
+def format_diy_report(
+    domain: str,
+    verified: List[Dict[str, Any]],
+    diy_order: Optional[List[str]] = None,
+    diy_titles: Optional[Dict[str, str]] = None,
+) -> str:
     lines = [f"# {domain} — Roadside / DIY Quick Guide", ""]
     lines.append(
         "If you're stuck on the side of the road: read this top to bottom, in order. "
@@ -48,27 +62,22 @@ def format_diy_report(domain: str, verified: List[Dict[str, Any]]) -> str:
     )
     lines.append("")
 
-    # Order matters for a roadside flow: battery first, then symptoms, then tests.
-    priority_order = [
-        "F8_BATTERY_FIRST_RULE",
-        "F9_STATIC_VOLTAGE_SPEC",
-        "F1_RUNNING_VOLTAGE",
-        "F2_LOW_VOLTAGE_STATOR",
-        "F3_HIGH_VOLTAGE_REGULATOR",
-        "F10_GROUND_MIMICS_FAILURE",
-        "F4_STATOR_AC_OUTPUT_TEST",
-        "F5_STATOR_RESISTANCE_TEST",
-        "F6_STATOR_GROUND_TEST",
-        "F7_REGULATOR_BLEED_BACK_TEST",
-    ]
+    diy_order = diy_order or []
+    diy_titles = diy_titles or {}
     by_id = {c["fact_id"]: c for c in verified}
-    step = 1
 
-    for fid in priority_order:
-        c = by_id.get(fid)
-        if not c:
-            continue  # didn't clear QC yet — don't tell a stranded rider unverified info
-        lines.append(f"### Step {step}: {_plain_english_title(fid)}")
+    # Start with the domain's specified order (if any), then append any
+    # verified claim not explicitly ordered — sorted by fact_id — so a claim
+    # is never silently dropped just because a domain file forgot to list it.
+    ordered_ids = [fid for fid in diy_order if fid in by_id]
+    remaining_ids = sorted(fid for fid in by_id if fid not in ordered_ids)
+    final_order = ordered_ids + remaining_ids
+
+    step = 1
+    for fid in final_order:
+        c = by_id[fid]
+        title = diy_titles.get(fid) or _fallback_title(c)
+        lines.append(f"### Step {step}: {title}")
         lines.append(_plain_english_body(c))
         lines.append("")
         step += 1
@@ -76,20 +85,15 @@ def format_diy_report(domain: str, verified: List[Dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
-def _plain_english_title(fact_id: str) -> str:
-    titles = {
-        "F8_BATTERY_FIRST_RULE": "Check the battery first",
-        "F9_STATIC_VOLTAGE_SPEC": "Test the battery at rest",
-        "F1_RUNNING_VOLTAGE": "Test the battery while the engine runs",
-        "F2_LOW_VOLTAGE_STATOR": "Low reading? It's probably the stator",
-        "F3_HIGH_VOLTAGE_REGULATOR": "High reading? It's probably the regulator",
-        "F10_GROUND_MIMICS_FAILURE": "Check your grounds before buying parts",
-        "F4_STATOR_AC_OUTPUT_TEST": "Test the stator directly",
-        "F5_STATOR_RESISTANCE_TEST": "Test the stator with the engine off",
-        "F6_STATOR_GROUND_TEST": "Make sure the stator isn't shorted",
-        "F7_REGULATOR_BLEED_BACK_TEST": "Test the regulator directly",
-    }
-    return titles.get(fact_id, fact_id)
+def _fallback_title(c: Dict[str, Any]) -> str:
+    """Generic title for any fact_id a domain didn't explicitly title.
+
+    Falls back to the claim's category in plain words plus a short slice of
+    its own fact_id, since the statement itself is usually a full sentence
+    and too long for a heading.
+    """
+    category_label = c.get("category", "note").replace("_", " ").capitalize()
+    return f"{category_label}: {c['fact_id'].split('_', 1)[-1].replace('_', ' ').title()}"
 
 
 def _plain_english_body(c: Dict[str, Any]) -> str:

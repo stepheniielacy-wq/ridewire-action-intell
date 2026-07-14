@@ -24,6 +24,8 @@
   let diyData = { intro: '', steps: [] };
   let mode = 'pro';
   let query = '';
+  let domains = [];
+  let currentDomainId = null;
 
   const verifiedGrid = document.getElementById('verified-grid');
   const pendingGrid = document.getElementById('pending-grid');
@@ -33,18 +35,60 @@
   const searchInput = document.getElementById('search-input');
   const modeProBtn = document.getElementById('mode-pro');
   const modeDiyBtn = document.getElementById('mode-diy');
+  const domainTabs = document.getElementById('domain-tabs');
+  const heroEyebrow = document.getElementById('hero-eyebrow');
 
-  Promise.all([
-    fetch('qc_data.json').then(r => r.json()),
-    fetch('diy_data.json').then(r => r.json())
-  ]).then(([qcJson, diyJson]) => {
-    qc = qcJson;
-    diyData = diyJson;
-    renderStats();
-    render();
-  }).catch(err => {
-    verifiedGrid.innerHTML = '<div class="empty-state"><p>Could not load diagnostic data. ' + err + '</p></div>';
-  });
+  // Fallback so the page still works if domains.json is missing (older single-domain deploys).
+  const FALLBACK_DOMAINS = [
+    { id: 'charging', label: 'Charging System', sublabel: 'Battery / Stator / Voltage Regulator-Rectifier', qc_file: 'qc_data.json', diy_file: 'diy_data.json' }
+  ];
+
+  fetch('domains.json').then(r => { if (!r.ok) throw new Error('no domains.json'); return r.json(); })
+    .then(json => {
+      domains = json.domains && json.domains.length ? json.domains : FALLBACK_DOMAINS;
+      initDomainTabs();
+    })
+    .catch(() => {
+      domains = FALLBACK_DOMAINS;
+      initDomainTabs();
+    });
+
+  function initDomainTabs() {
+    domainTabs.innerHTML = domains.map(d => `
+      <button class="domain-tab" data-domain-id="${escapeHtml(d.id)}" aria-pressed="false">
+        <span class="domain-tab-label">${escapeHtml(d.label)}</span>
+        <span class="domain-tab-sub">${escapeHtml(d.sublabel || '')}</span>
+      </button>
+    `).join('');
+    domainTabs.querySelectorAll('.domain-tab').forEach(btn => {
+      btn.addEventListener('click', () => loadDomain(btn.getAttribute('data-domain-id')));
+    });
+    loadDomain(domains[0].id);
+  }
+
+  function loadDomain(domainId) {
+    const d = domains.find(x => x.id === domainId);
+    if (!d) return;
+    currentDomainId = domainId;
+    domainTabs.querySelectorAll('.domain-tab').forEach(btn => {
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-domain-id') === domainId ? 'true' : 'false');
+    });
+    heroEyebrow.textContent = 'Pilot · Harley-Davidson ' + d.label;
+    query = '';
+    if (searchInput) searchInput.value = '';
+
+    Promise.all([
+      fetch(d.qc_file).then(r => r.json()),
+      fetch(d.diy_file).then(r => r.json())
+    ]).then(([qcJson, diyJson]) => {
+      qc = qcJson;
+      diyData = diyJson;
+      renderStats();
+      render();
+    }).catch(err => {
+      verifiedGrid.innerHTML = '<div class="empty-state"><p>Could not load diagnostic data. ' + err + '</p></div>';
+    });
+  }
 
   function renderStats() {
     statRow.innerHTML = `

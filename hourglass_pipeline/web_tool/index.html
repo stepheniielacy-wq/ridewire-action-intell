@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Hourglass Diagnostic Lookup — RideWire</title>
-<meta name="description" content="Verified Harley-Davidson charging system diagnostic data, corroborated across independent sources. RideWire Hourglass pilot." />
+<meta name="description" content="Verified Harley-Davidson diagnostic data, corroborated across independent sources, one system at a time. RideWire Hourglass pilot." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,17 +39,19 @@
 
 <main class="wrap">
   <section class="hero">
-    <span class="hero-eyebrow">Pilot · Harley-Davidson Charging System</span>
+    <span class="hero-eyebrow" id="hero-eyebrow">Pilot · Harley-Davidson Systems</span>
     <h1>Verified field diagnostics, not guesses.</h1>
     <p>Every claim below cleared a corroboration check — at least 3 independent domains had to agree before it made this page. Claims that fell short stay visible below, labeled as pending, instead of getting quietly dropped or faked.</p>
 
     <div class="stat-row" id="stat-row"></div>
   </section>
 
+  <div class="domain-tabs" id="domain-tabs" role="group" aria-label="Diagnostic system"></div>
+
   <div class="controls">
     <label class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input id="search-input" type="text" placeholder="Search battery, stator, regulator, voltage…" aria-label="Search diagnostic claims" />
+      <input id="search-input" type="text" placeholder="Search this system's claims…" aria-label="Search diagnostic claims" />
     </label>
     <div class="mode-toggle" role="group" aria-label="Report view">
       <button id="mode-pro" aria-pressed="true">Pro</button>

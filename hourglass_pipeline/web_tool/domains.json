@@ -1,0 +1,22 @@
+{
+  "domains": [
+    {
+      "id": "charging",
+      "label": "Charging System",
+      "sublabel": "Battery / Stator / Voltage Regulator-Rectifier",
+      "qc_file": "qc_data_charging.json",
+      "diy_file": "diy_data_charging.json",
+      "verified_count": 10,
+      "pending_count": 0
+    },
+    {
+      "id": "ignition",
+      "label": "Ignition & Starting System",
+      "sublabel": "No-Crank / No-Start Troubleshooting",
+      "qc_file": "qc_data_ignition.json",
+      "diy_file": "diy_data_ignition.json",
+      "verified_count": 10,
+      "pending_count": 0
+    }
+  ]
+}

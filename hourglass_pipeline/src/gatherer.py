@@ -41,6 +41,11 @@ class ClaimSet:
     domain: str
     pilot_note: str
     claims: List[Dict[str, Any]] = field(default_factory=list)
+    # Optional per-domain DIY-report presentation hints. If omitted, the
+    # Teacher falls back to a generic order/title so every new domain works
+    # out of the box without hand-editing teacher.py per domain.
+    diy_order: List[str] = field(default_factory=list)
+    diy_titles: Dict[str, str] = field(default_factory=dict)
 
 
 class SchemaError(ValueError):
@@ -76,7 +81,13 @@ def load_claims_file(path: str) -> ClaimSet:
             if "url" not in src or not src["url"].startswith("http"):
                 raise SchemaError(f"{path}: claim {claim['fact_id']} has an invalid source entry: {src}")
 
-    return ClaimSet(domain=domain, pilot_note=raw.get("pilot_note", ""), claims=claims)
+    return ClaimSet(
+        domain=domain,
+        pilot_note=raw.get("pilot_note", ""),
+        claims=claims,
+        diy_order=raw.get("diy_order", []),
+        diy_titles=raw.get("diy_titles", {}),
+    )
 
 
 def load_all_domains(data_dir: str) -> List[ClaimSet]:

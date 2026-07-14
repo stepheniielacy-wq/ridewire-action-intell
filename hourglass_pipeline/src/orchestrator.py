@@ -63,7 +63,7 @@ def main():
             f.write(pro_report)
         print(f"Wrote PRO report -> {pro_path}")
 
-        diy_report = format_diy_report(cs.domain, verified)
+        diy_report = format_diy_report(cs.domain, verified, diy_order=cs.diy_order, diy_titles=cs.diy_titles)
         diy_path = os.path.join(OUTPUT_DIR, f"diy_report_{slug}.md")
         with open(diy_path, "w", encoding="utf-8") as f:
             f.write(diy_report)

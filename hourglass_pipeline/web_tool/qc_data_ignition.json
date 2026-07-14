@@ -1,0 +1,174 @@
+{
+  "verified": [
+    {
+      "fact_id": "F1_STARTER_RELAY_DIN_PINOUT",
+      "category": "spec",
+      "statement": "Harley-Davidson starter relays on most Evolution/Twin Cam/Milwaukee-Eight era models use the industry-standard DIN 72552 4-pin relay layout: terminal 30 = constant/switched battery positive (common), terminal 87 = output to the starter solenoid, terminal 86 = trigger signal from the start button/switch, terminal 85 = ground for the relay coil. Older Ironhead/Shovelhead-era relays can use a different, non-DIN 3-terminal numbering - always confirm against the specific model's wiring diagram before testing.",
+      "status": "VERIFIED",
+      "independent_domain_count": 6,
+      "confidence": "HIGH",
+      "citations": [
+        "https://www.youtube.com/watch?v=oi02clHduzg",
+        "https://www.reddit.com/r/Harley/comments/qa55zl/1986_evo_sportster_could_someone_please_list/",
+        "https://carinterior.alibaba.com/buyingguides/4-pin-harley-starter-relay-wiring-guide",
+        "https://www.hagerty.com/media/maintenance-and-tech/understanding-relays-part-2/",
+        "https://www.hdtimeline.com/threads/starter-relay-wiring.1021/",
+        "https://www.hdforums.com/forum/ironhead/240597-starter-relay.html"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 6 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F2_STARTER_RELAY_BYPASS_TEST",
+      "category": "procedure",
+      "statement": "To test whether a suspect starter relay itself is the point of failure, pull the relay from its socket and use a jumper wire to bridge terminals 30 and 87 directly (bypassing the relay's coil/switch path entirely) with the ignition on and the transmission in neutral. If the starter now cranks, the relay itself is bad; if it still doesn't crank, the fault lies elsewhere (wiring, solenoid, starter, battery, or ground) and the relay should not be replaced on this evidence alone.",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdtimeline.com/threads/starter-relay-wiring.1021/",
+        "https://www.youtube.com/watch?v=DXxhzmWLXk4",
+        "https://engineerfix.com/how-to-bypass-a-starter-relay-and-why-you-shouldnt/"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F3_NO_CRANK_DIAGNOSTIC_ORDER",
+      "category": "diagnostic_rule",
+      "statement": "When a Harley won't crank at all (including no click and no sound), diagnose in this order rather than jumping to parts replacement: (1) battery voltage and condition first - a resting battery below roughly 12.4V may show voltage but lack enough amperage to spin the starter, (2) battery terminal and ground connections for corrosion or looseness, (3) starter relay, (4) starter solenoid, (5) starter motor itself, (6) safety interlock switches (clutch/neutral/side-stand) and their wiring. Skipping ahead to component replacement before checking connections and battery condition is the most common cause of misdiagnosis.",
+      "status": "VERIFIED",
+      "independent_domain_count": 5,
+      "confidence": "HIGH",
+      "citations": [
+        "https://www.insurance.harley-davidson.com/resources/motorcycle-wont-start",
+        "https://apextechnation.com/articles/diagnosing-no-crank-concerns",
+        "https://www.reddit.com/r/Harley/comments/1gdmz50/no_crank_no_start_bike_just_clicks_hard_when_i/",
+        "https://cursa.app/en/page/practical-troubleshooting-playbooks-no-crank-slow-crank-dead-battery-and-charging-light",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/784427-2002-fatboy-no-click-no-crank-no-start.html"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 5 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F4_VOLTAGE_DROP_CRANK_TEST",
+      "category": "procedure",
+      "statement": "Voltage-drop / cranking load test: with the battery fully charged and the engine disabled from firing (ignition disabled or plugs pulled), crank the starter for a few seconds while monitoring battery voltage with a multimeter. A healthy system shows only a small, consistent drop across each cable and connection rather than a large drop at any single point; as a rule of thumb, voltage should not fall below roughly 9.6-10V during cranking, and a drop into the 7-9V range signals a weak or failing battery rather than a starter/relay fault.",
+      "status": "VERIFIED",
+      "independent_domain_count": 4,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdforums.com/forum/fxr-models/1474921-voltage-drop-at-starter-motor.html",
+        "https://www.youtube.com/watch?v=5zVtfJxBcxM",
+        "https://www.fwi.co.uk/machinery/solving-your-starter-motor-woes",
+        "https://es.scribd.com/document/411691988/Testing-Starter-Motors"
+      ],
+      "numeric_range": {
+        "min_ok_during_crank": 10,
+        "fault_threshold_below": 9.5,
+        "unit": "VDC"
+      },
+      "notes": "Corroborated by 4 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F5_STATIC_VOLTAGE_MIN_FOR_START",
+      "category": "spec",
+      "statement": "For reliable starter engagement, resting battery voltage should read at least approximately 12.4-12.6V DC. Below that, the battery may still register a voltage reading but lack enough cold-cranking amperage to spin the starter, producing symptoms - a single click, no crank, or slow crank - that closely mimic relay or solenoid failure.",
+      "status": "VERIFIED",
+      "independent_domain_count": 4,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.insurance.harley-davidson.com/resources/motorcycle-wont-start",
+        "https://www.youtube.com/watch?v=OuSQ-hMoiRA",
+        "https://www.hdforums.com/forum/touring-models/1249018-starter-relay-click-what-to-check-next.html",
+        "https://www.reddit.com/r/Harley/comments/1gdmz50/no_crank_no_start_bike_just_clicks_hard_when_i/"
+      ],
+      "numeric_range": {
+        "min": 12.4,
+        "healthy_min": 12.6,
+        "unit": "VDC"
+      },
+      "notes": "Corroborated by 4 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F6_CLICK_NO_CRANK_MEANING",
+      "category": "diagnostic_rule",
+      "statement": "A single loud click (or repeated clicking) when pressing the start button, without the engine cranking, most commonly indicates either (a) insufficient battery amperage to hold the solenoid closed under load even with adequate resting voltage, (b) a solenoid or starter with worn contacts / high internal resistance, or (c) a bad ground or connection somewhere between the battery, solenoid, and starter. Clicking alone does not necessarily mean the starter motor itself is bad.",
+      "status": "VERIFIED",
+      "independent_domain_count": 4,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.reddit.com/r/Harley/comments/1gdmz50/no_crank_no_start_bike_just_clicks_hard_when_i/",
+        "https://www.hdforums.com/forum/touring-models/883737-the-dreaded-starter-click-please-help-2.html",
+        "https://www.ifixit.com/Answers/View/224477/Clicks+when+trying+to+start+does+not+engage.",
+        "https://www.youtube.com/watch?v=StfnMpUlUJ8"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 4 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F7_STARTER_SOLENOID_JUMP_TEST",
+      "category": "procedure",
+      "statement": "To isolate whether the starter solenoid or the wiring/relay upstream of it is at fault, apply 12V directly from the battery positive terminal to the solenoid's small trigger terminal (bypassing the relay and start button entirely). If the starter engages and cranks, the relay/wiring/switch side is at fault, not the solenoid or starter; if it still doesn't crank, suspect the solenoid, starter, or the battery-to-starter power/ground path itself.",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdforums.com/forum/electrical-lighting-alarm/5640-how-to-check-the-starter-solenoid.html",
+        "https://www.reddit.com/r/Harley/comments/16yqcph/2007_nightster_need_help_no_crank/",
+        "http://xj650.blogspot.com/2009/03/how-to-test-your-starter-circuit.html"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F8_SAFETY_INTERLOCK_REQUIREMENTS",
+      "category": "safety_and_diagnostic_rule",
+      "statement": "Most Harley-Davidson models require specific switch states before the starter circuit will engage, typically the clutch lever pulled in (via a microswitch in the clutch perch) combined with the transmission in neutral or the clutch held in - exact logic varies by year/model, so consult the model-specific wiring diagram. Many models also use a side-stand ('jiffy stand') interlock that can prevent starting or cut ignition if the stand is down while the transmission is in gear. A failed or misaligned clutch-perch microswitch is a common, overlooked cause of a bike that 'won't start' despite good battery, starter, and relay.",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.hdforums.com/forum/softail-models/924368-bike-only-starts-in-neutral.html",
+        "https://serviceinfo.harley-davidson.com/sip/service/procedure/2002615296912330195/BLAISE/474866/en_US?nid=5165",
+        "https://www.youtube.com/watch?v=6YXY7qv1DJg"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F9_TSM_TSSM_HFSM_OVERVIEW",
+      "category": "spec",
+      "statement": "Many Harley-Davidson models built roughly 2001-2013 have a Turn Signal/Security Module (TSM/TSSM), and later CAN-bus models use similar security modules (e.g. HFSM), that can log ignition-enable and starter-related fault codes and, in some fault states, restrict the starter circuit as an anti-theft measure. A common false alarm is a dying key fob battery or a blown turn-signal bulb triggering a security light or trouble code without any actual starter hardware fault - rule these out before condemning the relay, solenoid, or starter on models with this system.",
+      "status": "VERIFIED",
+      "independent_domain_count": 5,
+      "confidence": "HIGH",
+      "citations": [
+        "https://www.hdforums.com/how-tos/a/harley-davidson-dyna-glide-how-to-reset-the-turn-signal-security-module-tssm-414025",
+        "https://support.customdynamics.com/hc/en-us/articles/360051808073--Troubleshooting-TSSM-Code-Clearing",
+        "https://www.scribd.com/document/678196977/Harley-Trouble-Codes",
+        "http://abtmeyer-fricke.de/public/Diverses/2000%20TSM-TSSM.pdf",
+        "https://www.redlineharley.com/blog/how-do-you-reset-a-harley-davidson-key-fob--66991"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 5 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F10_TSSM_RESET_PROCEDURE",
+      "category": "procedure",
+      "statement": "Standard TSM/TSSM code-check and reset procedure (non-CAN-bus models, roughly 2001+): with the ignition switch OFF and the Run/Stop switch in RUN, press and hold the odometer reset button while turning the ignition switch to ON; release the button once the dash sweeps and 'DIAG' appears; step through the 'PSSPT' selection menu using the reset button to reach the security ('S') code check; press and hold the reset button to display any stored code, or 'NONE' if there isn't one; hold again while the code is displayed to clear it until 'CLEARED' appears. Exact menu steps and the 5-digit fault code list vary slightly by model year - always check for a dying key fob battery first, since that is a frequent false trigger.",
+      "status": "VERIFIED",
+      "independent_domain_count": 4,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://support.customdynamics.com/hc/en-us/articles/360051808073--Troubleshooting-TSSM-Code-Clearing",
+        "https://www.hdforums.com/how-tos/a/harley-davidson-dyna-glide-how-to-reset-the-turn-signal-security-module-tssm-414025",
+        "https://www.scribd.com/document/678196977/Harley-Trouble-Codes",
+        "https://www.cyclegear.com/assets/0002/3478/custom_dynamics_pro_beamled_turn_signal_conversion_kit_for_harley_touring20102013.pdf"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 4 independent domains (threshold 3)."
+    }
+  ],
+  "rejected_or_pending": []
+}
