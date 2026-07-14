@@ -100,6 +100,39 @@
       "notes": "Corroborated by 3 independent domains (threshold 3)."
     },
     {
+      "fact_id": "F6_STATOR_GROUND_TEST",
+      "category": "procedure",
+      "statement": "Stator ground test: with the stator disconnected, there should be NO continuity between any stator pin and the frame/engine ground. Continuity to ground means the stator is shorted (bad).",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
+        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://www.hdforums.com/forum/touring-models/1144930-charging-system-not-charging-sometimes.html",
+        "https://www.jpcycles.com/common-tread/step-by-step-instructions-for-testing-your-harleys-charging-system"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
+      "fact_id": "F7_REGULATOR_BLEED_BACK_TEST",
+      "category": "procedure",
+      "statement": "Voltage regulator bleed-back test: with the regulator unplugged from the stator (battery still connected), probe the regulator's output-side pins with a test light or voltmeter referenced to battery negative. Any voltage or illumination means the regulator is bad ('leaking' voltage).",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
+      "citations": [
+        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
+        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/753075-charging-system-problem.html",
+        "https://throttlemeister.com/harley-voltage-regulator-symptoms/"
+      ],
+      "numeric_range": null,
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
+    },
+    {
       "fact_id": "F8_BATTERY_FIRST_RULE",
       "category": "diagnostic_rule",
       "statement": "A weak or bad battery produces symptoms that look identical to a charging system failure. Always fully charge and load-test the battery FIRST before condemning the stator or regulator - otherwise all subsequent tests are unreliable.",
@@ -135,54 +168,23 @@
         "unit": "VDC"
       },
       "notes": "Corroborated by 4 independent domains (threshold 3)."
-    }
-  ],
-  "rejected_or_pending": [
-    {
-      "fact_id": "F6_STATOR_GROUND_TEST",
-      "category": "procedure",
-      "statement": "Stator ground test: with the stator disconnected, there should be NO continuity between any stator pin and the frame/engine ground. Continuity to ground means the stator is shorted (bad).",
-      "status": "NEEDS_MORE_SOURCES",
-      "independent_domain_count": 2,
-      "confidence": "LOW",
-      "citations": [
-        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
-        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html",
-        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
-        "https://www.hdforums.com/forum/touring-models/1144930-charging-system-not-charging-sometimes.html"
-      ],
-      "numeric_range": null,
-      "notes": "Only 2 independent domain(s) found (threshold 3). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
-    },
-    {
-      "fact_id": "F7_REGULATOR_BLEED_BACK_TEST",
-      "category": "procedure",
-      "statement": "Voltage regulator bleed-back test: with the regulator unplugged from the stator (battery still connected), probe the regulator's output-side pins with a test light or voltmeter referenced to battery negative. Any voltage or illumination means the regulator is bad ('leaking' voltage).",
-      "status": "NEEDS_MORE_SOURCES",
-      "independent_domain_count": 2,
-      "confidence": "LOW",
-      "citations": [
-        "https://www.fixmyhog.com/post/in-the-shop-harley-davidson-charging-system",
-        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/758871-battery-not-charging-fully.html",
-        "https://www.hdforums.com/forum/ignition-tuner-ecm-fuel-injection/753075-charging-system-problem.html"
-      ],
-      "numeric_range": null,
-      "notes": "Only 2 independent domain(s) found (threshold 3). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
     },
     {
       "fact_id": "F10_GROUND_MIMICS_FAILURE",
       "category": "safety_and_diagnostic_rule",
       "statement": "Bad or corroded ground connections (battery-to-frame, regulator-to-frame) commonly mimic stator or regulator failure. Inspect and clean all ground connections before replacing any electrical component.",
-      "status": "NEEDS_MORE_SOURCES",
-      "independent_domain_count": 2,
-      "confidence": "LOW",
+      "status": "VERIFIED",
+      "independent_domain_count": 3,
+      "confidence": "MEDIUM",
       "citations": [
         "https://www.youtube.com/watch?v=Af9_j_9ohuY",
         "https://www.youtube.com/watch?v=kglxbw8qRiQ",
-        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html"
+        "https://www.hdforums.com/forum/evo/801329-battery-not-charging.html",
+        "https://www.jpcycles.com/common-tread/step-by-step-instructions-for-testing-your-harleys-charging-system"
       ],
       "numeric_range": null,
-      "notes": "Only 2 independent domain(s) found (threshold 3). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
+      "notes": "Corroborated by 3 independent domains (threshold 3)."
     }
-  ]
+  ],
+  "rejected_or_pending": []
 }

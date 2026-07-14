@@ -112,7 +112,10 @@
     pendingCount.textContent = items.length + ' / ' + qc.rejected_or_pending.length;
 
     if (!items.length) {
-      pendingGrid.innerHTML = emptyState('No pending claims match your search.');
+      const msg = qc.rejected_or_pending.length === 0
+        ? 'Nothing pending right now \u2014 every gathered claim in this domain cleared the 3-domain corroboration bar.'
+        : 'No pending claims match your search.';
+      pendingGrid.innerHTML = emptyState(msg);
       return;
     }
 
@@ -172,9 +175,9 @@
       `).join('');
     }
 
-    pendingGrid.innerHTML = qc.rejected_or_pending
-      .filter(f => matchesQuery(f.statement))
-      .map(f => `
+    const pendingItems = qc.rejected_or_pending.filter(f => matchesQuery(f.statement));
+    pendingGrid.innerHTML = pendingItems.length
+      ? pendingItems.map(f => `
         <article class="fact-card pending">
           <div class="fact-top">
             <span class="fact-id">${escapeHtml(f.category)}</span>
@@ -183,7 +186,8 @@
           <p class="fact-statement">${escapeHtml(f.statement)}</p>
           <div class="pending-note">We're not teaching this one to the network yet — needs one more independent source to confirm it.</div>
         </article>
-      `).join('');
+      `).join('')
+      : emptyState('Nothing pending right now — every gathered claim in this domain is verified.');
   }
 
   // ---------- Controls ----------

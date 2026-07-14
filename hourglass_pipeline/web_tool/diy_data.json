@@ -28,13 +28,28 @@
     },
     {
       "step": 6,
+      "title": "Check your grounds before buying parts",
+      "body": "Bad or corroded ground connections (battery-to-frame, regulator-to-frame) commonly mimic stator or regulator failure. Inspect and clean all ground connections before replacing any electrical component."
+    },
+    {
+      "step": 7,
       "title": "Test the stator directly",
       "body": "Stator AC output test: unplug the stator-to-regulator connector, set a multimeter to AC volts, start/rev the engine, and measure AC voltage across the stator pins. Typical output is roughly 16-26 VAC per 1000 RPM depending on the system's amp rating (varies by model/year - consult the factory service manual for exact spec). Never disconnect or reconnect the stator plug while the engine is running - it can destroy the stator."
     },
     {
-      "step": 7,
+      "step": 8,
       "title": "Test the stator with the engine off",
       "body": "Stator resistance test: with the stator disconnected, resistance across the stator pins typically reads about 0.1-0.5 ohms depending on the system. A much higher reading or an open circuit indicates a broken winding (bad stator)."
+    },
+    {
+      "step": 9,
+      "title": "Make sure the stator isn't shorted",
+      "body": "Stator ground test: with the stator disconnected, there should be NO continuity between any stator pin and the frame/engine ground. Continuity to ground means the stator is shorted (bad)."
+    },
+    {
+      "step": 10,
+      "title": "Test the regulator directly",
+      "body": "Voltage regulator bleed-back test: with the regulator unplugged from the stator (battery still connected), probe the regulator's output-side pins with a test light or voltmeter referenced to battery negative. Any voltage or illumination means the regulator is bad ('leaking' voltage)."
     }
   ]
 }
