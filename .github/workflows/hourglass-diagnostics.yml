@@ -1,0 +1,38 @@
+name: Hourglass Diagnostic Pipeline
+
+on:
+  schedule:
+    # Runs every day at 12:00 UTC (5am MDT / 6am MST)
+    - cron: '0 12 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run-hourglass:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Hourglass Gather -> Debate -> Teach pipeline
+        working-directory: hourglass_pipeline
+        run: python src/orchestrator.py
+
+      - name: Commit updated reports if anything changed
+        run: |
+          git config user.name "RideWire Hourglass Bot"
+          git config user.email "actions@github.com"
+          git add hourglass_pipeline/output
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Automated Hourglass pipeline run: refresh diagnostic reports"
+            git push
+          fi
