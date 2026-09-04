@@ -29,7 +29,7 @@ jobs:
         run: |
           git config user.name "RideWire Hourglass Bot"
           git config user.email "actions@github.com"
-          git add hourglass_pipeline/output
+          git add -f hourglass_pipeline/output
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
