@@ -21,24 +21,37 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
       
       - name: Install dependencies
         run: npm install
       
+      - name: Install free open-source AI writer (Ollama)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y zstd
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -s http://127.0.0.1:11434/api/tags > /dev/null; then
+              echo "Ollama is up"
+              break
+            fi
+            sleep 2
+          done
+          ollama pull llama3.2:1b
+      
+      - name: Install free open-source voice generator (Piper TTS)
+        run: |
+          pip install --quiet piper-tts
+      
       - name: Configure environment
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          DID_API_KEY: ${{ secrets.DID_API_KEY }}
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
           YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
         run: |
-          echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env
-          echo "ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}" >> .env
-          echo "DID_API_KEY=${DID_API_KEY}" >> .env
           echo "YOUTUBE_CLIENT_ID=${YOUTUBE_CLIENT_ID}" >> .env
           echo "YOUTUBE_CLIENT_SECRET=${YOUTUBE_CLIENT_SECRET}" >> .env
           echo "YOUTUBE_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}" >> .env
