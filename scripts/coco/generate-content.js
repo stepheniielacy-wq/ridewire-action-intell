@@ -252,6 +252,8 @@ Respond ONLY with strict JSON, no markdown, in this exact shape:
       const metadata = {
         videoId,
         topic,
+        title: script.title,
+        keywords: script.keywords,
         script,
         generatedAt: new Date().toISOString(),
         status: 'ready_for_upload',
