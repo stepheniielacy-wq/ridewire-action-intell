@@ -1,0 +1,146 @@
+{
+  "queue": [
+    {
+      "id": 1,
+      "title": "Check Engine Light Quick Fix P0300",
+      "category": "diagnostic_codes",
+      "priority": "high",
+      "targetLength": 3,
+      "keywords": [
+        "P0300",
+        "check engine light",
+        "misfire",
+        "diagnostic"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 2,
+      "title": "Harley Davidson Diagnostic Codes Explained",
+      "category": "motorcycle",
+      "priority": "high",
+      "targetLength": 5,
+      "keywords": [
+        "Harley Davidson",
+        "diagnostic codes",
+        "motorcycle"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 3,
+      "title": "AI Multi-Agent Consensus for Brake Problems",
+      "category": "ai_diagnostics",
+      "priority": "high",
+      "targetLength": 3,
+      "keywords": [
+        "AI diagnostics",
+        "brakes",
+        "multi-agent",
+        "consensus"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 4,
+      "title": "Top 5 OBD-II Scanner Features to Look For",
+      "category": "tools",
+      "priority": "medium",
+      "targetLength": 4,
+      "keywords": [
+        "OBD-II",
+        "scanner",
+        "diagnostic tools"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 5,
+      "title": "How to Read Transmission Fault Codes",
+      "category": "diagnostic_codes",
+      "priority": "medium",
+      "targetLength": 3,
+      "keywords": [
+        "transmission",
+        "fault codes",
+        "diagnostics"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 6,
+      "title": "Electric Vehicle Diagnostic Basics for Beginners",
+      "category": "ev_diagnostics",
+      "priority": "high",
+      "targetLength": 4,
+      "keywords": [
+        "electric vehicle",
+        "EV",
+        "diagnostics",
+        "beginner"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 7,
+      "title": "Understanding ABS Brake System Warning Lights",
+      "category": "brakes",
+      "priority": "medium",
+      "targetLength": 3,
+      "keywords": [
+        "ABS",
+        "brakes",
+        "warning lights"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 8,
+      "title": "AI-Powered Engine Diagnostics: The Future is Here",
+      "category": "ai_diagnostics",
+      "priority": "high",
+      "targetLength": 5,
+      "keywords": [
+        "AI",
+        "engine diagnostics",
+        "future tech"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 9,
+      "title": "Common Ford F-150 Diagnostic Issues and Solutions",
+      "category": "vehicle_specific",
+      "priority": "medium",
+      "targetLength": 4,
+      "keywords": [
+        "Ford F-150",
+        "diagnostic issues",
+        "solutions"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": 10,
+      "title": "Diesel Engine Diagnostic Codes: A Complete Guide",
+      "category": "diagnostic_codes",
+      "priority": "medium",
+      "targetLength": 5,
+      "keywords": [
+        "diesel",
+        "diagnostic codes",
+        "engine"
+      ],
+      "status": "queued"
+    }
+  ],
+  "categories": {
+    "diagnostic_codes": "OBD-II and error code explanations",
+    "motorcycle": "Motorcycle-specific diagnostics",
+    "ai_diagnostics": "AI-powered diagnostic tools and methods",
+    "tools": "Diagnostic tools and equipment reviews",
+    "ev_diagnostics": "Electric vehicle diagnostics",
+    "brakes": "Brake system diagnostics",
+    "vehicle_specific": "Vehicle-specific diagnostic guides"
+  }
+}
