@@ -110,7 +110,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/
+          git add -f data/ || true
           git commit -m "Auto: COCO content generated - ${{ steps.get_topic.outputs.topic }}" || echo "No changes to commit"
           git push || echo "Nothing to push"
       
