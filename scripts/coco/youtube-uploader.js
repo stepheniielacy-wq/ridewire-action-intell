@@ -106,7 +106,7 @@ Powered by COCO AI - Educational Content Generator
       description,
       tags,
       category: 'Autos & Vehicles', // YouTube category ID: 2
-      privacyStatus: 'public', // Options: public, private, unlisted
+      privacyStatus: 'unlisted', // Options: public, private, unlisted - default to unlisted until Stephenie reviews and approves going public
       madeForKids: false,
       defaultLanguage: 'en',
       defaultAudioLanguage: 'en'
