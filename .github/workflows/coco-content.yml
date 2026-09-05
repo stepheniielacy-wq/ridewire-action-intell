@@ -34,6 +34,7 @@ jobs:
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
         run: |
           echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env
           echo "ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}" >> .env
@@ -41,6 +42,7 @@ jobs:
           echo "YOUTUBE_CLIENT_ID=${YOUTUBE_CLIENT_ID}" >> .env
           echo "YOUTUBE_CLIENT_SECRET=${YOUTUBE_CLIENT_SECRET}" >> .env
           echo "YOUTUBE_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}" >> .env
+          echo "YOUTUBE_REFRESH_TOKEN=${YOUTUBE_REFRESH_TOKEN}" >> .env
       
       - name: Get next topic from calendar
         id: get_topic
