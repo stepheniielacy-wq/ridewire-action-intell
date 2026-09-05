@@ -1,5 +1,8 @@
 name: COCO Daily Content Generation
 
+permissions:
+  contents: write
+
 on:
   schedule:
     # Monday at 9:00 AM UTC (adjust timezone as needed)
