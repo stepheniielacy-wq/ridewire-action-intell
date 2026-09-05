@@ -138,6 +138,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       
+      - name: Pull latest data committed by generate-and-upload job
+        run: git pull origin main || true
+
       - name: Run health check
         run: |
           node scripts/automation/coco-monitor.js
