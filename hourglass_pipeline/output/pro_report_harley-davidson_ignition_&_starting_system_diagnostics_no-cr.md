@@ -44,11 +44,6 @@ To isolate whether the starter solenoid or the wiring/relay upstream of it is at
 - Corroborated by 3 independent sources.
 - Citations: https://www.hdforums.com/forum/electrical-lighting-alarm/5640-how-to-check-the-starter-solenoid.html; https://www.reddit.com/r/Harley/comments/16yqcph/2007_nightster_need_help_no_crank/; http://xj650.blogspot.com/2009/03/how-to-test-your-starter-circuit.html
 
-## F8_SAFETY_INTERLOCK_REQUIREMENTS (safety_and_diagnostic_rule) — Confidence: MEDIUM
-Most Harley-Davidson models require specific switch states before the starter circuit will engage, typically the clutch lever pulled in (via a microswitch in the clutch perch) combined with the transmission in neutral or the clutch held in - exact logic varies by year/model, so consult the model-specific wiring diagram. Many models also use a side-stand ('jiffy stand') interlock that can prevent starting or cut ignition if the stand is down while the transmission is in gear. A failed or misaligned clutch-perch microswitch is a common, overlooked cause of a bike that 'won't start' despite good battery, starter, and relay.
-- Corroborated by 3 independent sources.
-- Citations: https://www.hdforums.com/forum/softail-models/924368-bike-only-starts-in-neutral.html; https://serviceinfo.harley-davidson.com/sip/service/procedure/2002615296912330195/BLAISE/474866/en_US?nid=5165; https://www.youtube.com/watch?v=6YXY7qv1DJg
-
 ## F9_TSM_TSSM_HFSM_OVERVIEW (spec) — Confidence: HIGH
 Many Harley-Davidson models built roughly 2001-2013 have a Turn Signal/Security Module (TSM/TSSM), and later CAN-bus models use similar security modules (e.g. HFSM), that can log ignition-enable and starter-related fault codes and, in some fault states, restrict the starter circuit as an anti-theft measure. A common false alarm is a dying key fob battery or a blown turn-signal bulb triggering a security light or trouble code without any actual starter hardware fault - rule these out before condemning the relay, solenoid, or starter on models with this system.
 - Corroborated by 5 independent sources.

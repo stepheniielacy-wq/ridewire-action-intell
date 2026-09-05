@@ -94,7 +94,7 @@
     statRow.innerHTML = `
       <div class="stat"><span class="stat-num verified">${qc.verified.length}</span><span class="stat-label">Verified claims</span></div>
       <div class="stat"><span class="stat-num pending">${qc.rejected_or_pending.length}</span><span class="stat-label">Pending sources</span></div>
-      <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Domains required</span></div>
+      <div class="stat"><span class="stat-num">3+/5+</span><span class="stat-label">Domains required (safety-critical)</span></div>
     `;
   }
 
@@ -157,7 +157,7 @@
 
     if (!items.length) {
       const msg = qc.rejected_or_pending.length === 0
-        ? 'Nothing pending right now \u2014 every gathered claim in this domain cleared the 3-domain corroboration bar.'
+        ? 'Nothing pending right now \u2014 every gathered claim in this domain cleared its corroboration bar (3+ independent domains, 5+ for safety-critical claims).'
         : 'No pending claims match your search.';
       pendingGrid.innerHTML = emptyState(msg);
       return;
@@ -173,7 +173,7 @@
           </div>
         </div>
         <p class="fact-statement">${escapeHtml(f.statement)}</p>
-        <div class="pending-note">Only ${f.independent_domain_count} independent domain${f.independent_domain_count === 1 ? '' : 's'} found (needs 3+). Not used in any report until this clears.</div>
+        <div class="pending-note">${escapeHtml(f.notes || ('Only ' + f.independent_domain_count + ' independent domain(s) found.'))} Not used in any report until this clears.</div>
         <details class="citations">
           <summary>${f.citations.length} source${f.citations.length === 1 ? '' : 's'} so far</summary>
           <ul>

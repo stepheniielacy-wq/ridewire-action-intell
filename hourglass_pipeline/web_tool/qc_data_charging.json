@@ -168,14 +168,16 @@
         "unit": "VDC"
       },
       "notes": "Corroborated by 4 independent domains (threshold 3)."
-    },
+    }
+  ],
+  "rejected_or_pending": [
     {
       "fact_id": "F10_GROUND_MIMICS_FAILURE",
       "category": "safety_and_diagnostic_rule",
       "statement": "Bad or corroded ground connections (battery-to-frame, regulator-to-frame) commonly mimic stator or regulator failure. Inspect and clean all ground connections before replacing any electrical component.",
-      "status": "VERIFIED",
+      "status": "NEEDS_MORE_SOURCES",
       "independent_domain_count": 3,
-      "confidence": "MEDIUM",
+      "confidence": "LOW",
       "citations": [
         "https://www.youtube.com/watch?v=Af9_j_9ohuY",
         "https://www.youtube.com/watch?v=kglxbw8qRiQ",
@@ -183,8 +185,7 @@
         "https://www.jpcycles.com/common-tread/step-by-step-instructions-for-testing-your-harleys-charging-system"
       ],
       "numeric_range": null,
-      "notes": "Corroborated by 3 independent domains (threshold 3)."
+      "notes": "Only 3 independent domain(s) found (threshold 5). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
     }
-  ],
-  "rejected_or_pending": []
+  ]
 }

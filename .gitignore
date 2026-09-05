@@ -85,3 +85,4 @@ assets/gumroad/
 analytics-export-*.csv
 revenue-export-*.csv
 daily-analytics-*.csv
+__pycache__/

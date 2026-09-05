@@ -122,21 +122,6 @@
       "notes": "Corroborated by 3 independent domains (threshold 3)."
     },
     {
-      "fact_id": "F8_SAFETY_INTERLOCK_REQUIREMENTS",
-      "category": "safety_and_diagnostic_rule",
-      "statement": "Most Harley-Davidson models require specific switch states before the starter circuit will engage, typically the clutch lever pulled in (via a microswitch in the clutch perch) combined with the transmission in neutral or the clutch held in - exact logic varies by year/model, so consult the model-specific wiring diagram. Many models also use a side-stand ('jiffy stand') interlock that can prevent starting or cut ignition if the stand is down while the transmission is in gear. A failed or misaligned clutch-perch microswitch is a common, overlooked cause of a bike that 'won't start' despite good battery, starter, and relay.",
-      "status": "VERIFIED",
-      "independent_domain_count": 3,
-      "confidence": "MEDIUM",
-      "citations": [
-        "https://www.hdforums.com/forum/softail-models/924368-bike-only-starts-in-neutral.html",
-        "https://serviceinfo.harley-davidson.com/sip/service/procedure/2002615296912330195/BLAISE/474866/en_US?nid=5165",
-        "https://www.youtube.com/watch?v=6YXY7qv1DJg"
-      ],
-      "numeric_range": null,
-      "notes": "Corroborated by 3 independent domains (threshold 3)."
-    },
-    {
       "fact_id": "F9_TSM_TSSM_HFSM_OVERVIEW",
       "category": "spec",
       "statement": "Many Harley-Davidson models built roughly 2001-2013 have a Turn Signal/Security Module (TSM/TSSM), and later CAN-bus models use similar security modules (e.g. HFSM), that can log ignition-enable and starter-related fault codes and, in some fault states, restrict the starter circuit as an anti-theft measure. A common false alarm is a dying key fob battery or a blown turn-signal bulb triggering a security light or trouble code without any actual starter hardware fault - rule these out before condemning the relay, solenoid, or starter on models with this system.",
@@ -170,5 +155,21 @@
       "notes": "Corroborated by 4 independent domains (threshold 3)."
     }
   ],
-  "rejected_or_pending": []
+  "rejected_or_pending": [
+    {
+      "fact_id": "F8_SAFETY_INTERLOCK_REQUIREMENTS",
+      "category": "safety_and_diagnostic_rule",
+      "statement": "Most Harley-Davidson models require specific switch states before the starter circuit will engage, typically the clutch lever pulled in (via a microswitch in the clutch perch) combined with the transmission in neutral or the clutch held in - exact logic varies by year/model, so consult the model-specific wiring diagram. Many models also use a side-stand ('jiffy stand') interlock that can prevent starting or cut ignition if the stand is down while the transmission is in gear. A failed or misaligned clutch-perch microswitch is a common, overlooked cause of a bike that 'won't start' despite good battery, starter, and relay.",
+      "status": "NEEDS_MORE_SOURCES",
+      "independent_domain_count": 3,
+      "confidence": "LOW",
+      "citations": [
+        "https://www.hdforums.com/forum/softail-models/924368-bike-only-starts-in-neutral.html",
+        "https://serviceinfo.harley-davidson.com/sip/service/procedure/2002615296912330195/BLAISE/474866/en_US?nid=5165",
+        "https://www.youtube.com/watch?v=6YXY7qv1DJg"
+      ],
+      "numeric_range": null,
+      "notes": "Only 3 independent domain(s) found (threshold 5). Do not teach this to the network yet \u2014 send back to the Learner for more corroboration."
+    }
+  ]
 }

@@ -1,0 +1,36 @@
+{
+  "held": 4,
+  "total": 5,
+  "results": [
+    {
+      "attack_id": "ATTACK-1",
+      "description": "Cite the same real domain 3x with trivial formatting differences (trailing slash, trailing space, case) to fake 3 independent sources.",
+      "defense_held": true,
+      "evidence": "status=NEEDS_MORE_SOURCES, independent_domain_count=1"
+    },
+    {
+      "attack_id": "ATTACK-2",
+      "description": "Type 3 trustworthy-sounding domain labels (reuters.com, nytimes.com, bbc.com) while every url actually points to the same fabricated page \u2014 domain label is never validated against the real url.",
+      "defense_held": true,
+      "evidence": "status=REJECTED_CONFLICT, confidence=LOW, independent_domain_count=0, citations=['https://fake-blog.example/made-up-page', 'https://fake-blog.example/made-up-page', 'https://fake-blog.example/made-up-page']"
+    },
+    {
+      "attack_id": "ATTACK-3",
+      "description": "debater.py's docstring claims safety-tagged claims require a 'strictly higher bar' (MIN_CORROBORATION_SAFETY). Check whether the constant is actually higher, and whether a safety claim with exactly the normal minimum (3 sources) still verifies.",
+      "defense_held": true,
+      "evidence": "MIN_CORROBORATION=3, MIN_CORROBORATION_SAFETY=5 -> safety claim with exactly 3 sources (the normal, non-safety bar) resulted in status=NEEDS_MORE_SOURCES (should NOT verify if the safety bar is truly higher)."
+    },
+    {
+      "attack_id": "ATTACK-4",
+      "description": "docstring Rule 2 claims sources contradicting a stated numeric_range are caught. No code in debater.py references numeric_range at all \u2014 verify a claim whose 3 sources wildly disagree (6V / 12-13V / 24V) and see if it still passes.",
+      "defense_held": false,
+      "evidence": "status=VERIFIED despite sources disagreeing by a factor of 4x (6V vs 24V) \u2014 numeric_range='12.5-13.0V at rest' was never checked against per-source values because no such per-source field or check exists."
+    },
+    {
+      "attack_id": "ATTACK-5",
+      "description": "Submit a batch of 3 claims where the middle one is missing required field 'fact_id'. A robust pipeline should skip/flag just that one record. Does the whole batch crash instead?",
+      "defense_held": true,
+      "evidence": "run_devils_qc completed without crashing: 2 verified, 1 pending."
+    }
+  ]
+}

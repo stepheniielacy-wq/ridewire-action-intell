@@ -41,7 +41,7 @@
   <section class="hero">
     <span class="hero-eyebrow" id="hero-eyebrow">Pilot · Harley-Davidson Systems</span>
     <h1>Verified field diagnostics, not guesses.</h1>
-    <p>Every claim below cleared a corroboration check — at least 3 independent domains had to agree before it made this page. Claims that fell short stay visible below, labeled as pending, instead of getting quietly dropped or faked.</p>
+    <p>Every claim below cleared a corroboration check — at least 3 independent domains had to agree (5+ for safety-critical claims) before it made this page. Claims that fell short stay visible below, labeled as pending, instead of getting quietly dropped or faked.</p>
 
     <div class="stat-row" id="stat-row"></div>
   </section>
@@ -76,7 +76,7 @@
     <ol>
       <li>The Learner gathers a claim with citations from a real source (forum thread, manufacturer doc, repair video).</li>
       <li>The Debater checks how many <em>independent domains</em> — not just repeated links from the same site — back the claim.</li>
-      <li>3+ independent domains → status VERIFIED. Fewer → NEEDS_MORE_SOURCES, and it stays pending, visible, and unused until more corroboration arrives.</li>
+      <li>3+ independent domains → status VERIFIED (5+ for safety-critical claims, a stricter bar). Fewer → NEEDS_MORE_SOURCES, and it stays pending, visible, and unused until more corroboration arrives. A source whose declared domain label doesn't match the real host of its own link is rejected outright, not counted.</li>
       <li>Only VERIFIED claims get formatted into the Pro and DIY reports above.</li>
     </ol>
     <p>Source code, raw claim data, and QC logic: <a href="https://github.com/stepheniielacy-wq/ridewire-action-intell/tree/main/hourglass_pipeline" target="_blank" rel="noopener">ridewire-action-intell / hourglass_pipeline</a></p>
