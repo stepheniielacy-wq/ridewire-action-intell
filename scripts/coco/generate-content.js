@@ -166,11 +166,39 @@ Respond ONLY with strict JSON, no markdown, in this exact shape:
   }
 
   /**
-   * Assemble the final video locally with ffmpeg: a generated background
-   * with the video title, plus the narration audio track. No paid avatar
-   * API required.
+   * Generate a real AI background image for the video using Pollinations.ai
+   * -- a free, open-source-backed image generation API that requires no
+   * API key, sign-up, or billing account. Falls back to null (solid color
+   * background) if unreachable.
    */
-  async generateVideo(audioPath, scriptData, outputPath) {
+  async generateBackgroundImage(topic, outputPath) {
+    console.log('🎨 Generating AI background image (Pollinations, free)...');
+    const prompt = `cyberpunk motorcycle repair garage, neon blue and red lighting, diagnostic hologram screens, automotive tech, cinematic, highly detailed, ${topic}`;
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1280&height=720&nologo=true`;
+
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 45000);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeout);
+      if (!res.ok) throw new Error(`Pollinations returned HTTP ${res.status}`);
+      const buffer = Buffer.from(await res.arrayBuffer());
+      await fs.writeFile(outputPath, buffer);
+      console.log('✅ AI background image generated (Pollinations, open/free)');
+      return outputPath;
+    } catch (error) {
+      console.warn(`⚠️  AI image generation unavailable (${error.message}), falling back to solid background`);
+      return null;
+    }
+  }
+
+  /**
+   * Assemble the final video locally with ffmpeg: a real AI-generated
+   * background image (with a slow Ken Burns zoom so it reads as video, not
+   * a static slide) plus the video title and narration audio track. No
+   * paid avatar API required.
+   */
+  async generateVideo(audioPath, scriptData, outputPath, imagePath) {
     console.log('🎬 Assembling video with ffmpeg...');
 
     try {
@@ -187,14 +215,26 @@ Respond ONLY with strict JSON, no markdown, in this exact shape:
       const fontPath = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';
       const drawText = `drawtext=fontfile=${fontPath}:text='${title}':fontcolor=white:fontsize=54:x=(w-text_w)/2:y=(h-text_h)/2-40:box=1:boxcolor=0x1b263b@0.8:boxborderw=30,drawtext=fontfile=${fontPath}:text='RideWire AI Hub':fontcolor=0x8ecae6:fontsize=32:x=(w-text_w)/2:y=(h-text_h)/2+60`;
 
-      const args = [
-        '-y',
-        '-f', 'lavfi', '-i', `color=c=0x0d1b2a:s=1280x720:d=${duration}`
-      ];
+      const args = ['-y'];
+      const fps = 25;
+      const totalFrames = duration * fps;
+
+      if (imagePath) {
+        // Real AI-generated image, slow Ken Burns zoom so it feels like video.
+        args.push('-loop', '1', '-i', imagePath);
+      } else {
+        // Fallback: plain solid-color background.
+        args.push('-f', 'lavfi', '-i', `color=c=0x0d1b2a:s=1280x720:d=${duration}`);
+      }
       if (audioPath) {
         args.push('-i', audioPath);
       }
-      args.push('-vf', drawText, '-c:v', 'libx264', '-pix_fmt', 'yuv420p');
+
+      const videoFilter = imagePath
+        ? `scale=1600:900,zoompan=z='min(zoom+0.0008,1.15)':d=${totalFrames}:s=1280x720:fps=${fps},${drawText}`
+        : drawText;
+
+      args.push('-vf', videoFilter, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-t', String(duration));
       if (audioPath) {
         args.push('-c:a', 'aac', '-shortest');
       }
@@ -246,8 +286,11 @@ Respond ONLY with strict JSON, no markdown, in this exact shape:
       const audioPath = path.join(this.outputDir, `${videoId}-audio.mp3`);
       const realAudioPath = await this.generateVoiceover(script, audioPath);
 
+      const imagePath = path.join(this.outputDir, `${videoId}-background.jpg`);
+      const realImagePath = await this.generateBackgroundImage(topic, imagePath);
+
       const videoPath = path.join(this.outputDir, `${videoId}-video.mp4`);
-      await this.generateVideo(realAudioPath, script, videoPath);
+      await this.generateVideo(realAudioPath, script, videoPath, realImagePath);
 
       const metadata = {
         videoId,
