@@ -1,0 +1,72 @@
+{
+  "code": "P0371 / P0372 / P0374",
+  "platform": "Harley-Davidson carbureted models (2004 model year Softail, Touring, Dyna, Sportster) - Crankshaft Position (CKP) sensor circuit, per official Harley-Davidson Technical Service Bulletin M-1140",
+  "code_description": "Per Harley-Davidson Service Bulletin M-1140 (\"EDM Update\", issued October 8, 2003), the correct DTCs for the crank position sensor on carbureted models are P0371 (Crankshaft position shorted low / CKP sensor wrong number of pulses), P0372 (Crankshaft position shorted high), and P0374 (Crankshaft position sensor not detected / cannot synchronize). The bulletin explicitly corrected earlier 2004 diagnostic manuals that had incorrectly listed P0373 and P0374 for this fault; P0373 is stated as \"not available.\" A DTC in this family sets if the CKP signal is weak, shorted, or absent.",
+  "family": "Sensor circuit (engine position / ignition timing reference)",
+  "verified_likely_causes": [
+    "Intermittent connection, pinched or damaged CKP sensor wiring, or a loose CKP sensor mounting fastener",
+    "Failed or degraded crankshaft position sensor unable to produce the minimum required AC signal (per the HD bulletin's diagnostic chart, at least 1 VAC during cranking) at its output terminals",
+    "Wiring shorted to ground or to voltage between the CKP sensor connector and the ignition control module (ICM)"
+  ],
+  "verified_first_check": "Per the official Harley-Davidson diagnostic flowchart in TSB M-1140, first check for intermittent connections, pinched/damaged wires, and a loose CKP sensor fastener; if none are found, connect a breakout box to the harness (leaving the ignition control module disconnected) and measure resistance between the CKP sensor terminals and ground -- resistance greater than 1 megohm is expected for a good circuit, with further AC-voltage cranking tests (minimum 1 VAC) used to isolate a bad sensor from a wiring fault.",
+  "verified_sources": [
+    "https://sportsterpedia.com/lib/exe/fetch.php/pdf-bulletin:tsb1140.pdf",
+    "https://s3.amazonaws.com/tnmarketing/fmh/Troubleshoot-with-Harley-Error-Codes.pdf",
+    "https://www.harley-davidsonforums.com/threads/crank-with-no-start-with-ckp-error-codes.378654/"
+  ],
+  "verified_confidence_note": "Strong: primary source is the actual scanned/hosted text of official Harley-Davidson Technical Service Bulletin M-1140 (an EDM/diagnostic-manual correction notice), independently corroborated by a separately-compiled dealer-sourced DTC reference document (hosted on S3, aggregating Harley diagnostic manuals) and further discussed by riders on an independent Harley owner forum reporting the same P0371/P0374 code pairing and description in the field.",
+  "generated_at_utc": "2026-09-05T16:06:05.127129+00:00",
+  "models_queried": [
+    "Claude Sonnet 5",
+    "GPT-5.6 Terra",
+    "Gemini 3.1 Pro"
+  ],
+  "per_model_diagnosis": {
+    "Claude Sonnet 5": {
+      "primary_root_cause": "Damaged, corroded, or high-resistance CKP sensor wiring/connector (open or shorted circuit between sensor and ECM)",
+      "other_likely_causes": [
+        "Failed/degraded crankshaft position sensor (cracked housing, moisture intrusion, weak magnetic pickup)",
+        "Excessive air gap or mounting misalignment between CKP sensor and flywheel/reluctor due to worn or loose mounting hardware",
+        "Damaged or contaminated flywheel reluctor (missing/chipped teeth, debris, or metal shavings)",
+        "Corroded, loose, or oxidized ECM connector pins on the CKP circuit",
+        "Chafed or heat-damaged sensor harness contacting the engine or exhaust, causing an intermittent short"
+      ],
+      "recommended_first_check": "Inspect the CKP sensor connector and wiring harness for corrosion, damage, or chafing, then back-probe the circuit with a multimeter/scope to verify sensor resistance and AC signal output match factory spec while cranking",
+      "urgency": "high",
+      "reasoning": "A P0371/P0372/P0374 fault means the ECM cannot reliably read crank position, which is required for ignition timing and fuel sync, so the engine can misfire, stall unexpectedly, or fail to start entirely. Because these are wiring/connector-prone circuits exposed to vibration and road conditions, harness and connector integrity should be ruled out before condemning the sensor itself. This is high urgency since loss of a reliable timing reference can leave the rider stranded or cause an unsafe stall while riding."
+    },
+    "GPT-5.6 Terra": {
+      "primary_root_cause": "Failed or intermittent crankshaft position sensor",
+      "other_likely_causes": [
+        "Damaged, corroded, or loose CKP sensor wiring or connector",
+        "Short-to-ground, short-to-voltage, or open circuit in the CKP signal harness",
+        "Excessive sensor air gap, damaged reluctor, or poor sensor mounting"
+      ],
+      "recommended_first_check": "Disconnect the CKP sensor connector and inspect the connector and harness closely for oil intrusion, chafing, broken conductors, or loose terminals, then test sensor resistance and continuity against the service-manual specification.",
+      "urgency": "high",
+      "reasoning": "These codes indicate that the ignition module is receiving a weak, invalid, or missing crankshaft-position signal, most commonly from a failing CKP sensor or its circuit. Because CKP input controls spark timing and synchronization, the fault can cause a no-start, stalling, or sudden engine shutdown and should be addressed before riding."
+    },
+    "Gemini 3.1 Pro": {
+      "primary_root_cause": "Faulty Crankshaft Position (CKP) sensor",
+      "other_likely_causes": [
+        "Damaged wiring harness or loose connector",
+        "Metallic debris buildup on the magnetic sensor tip",
+        "Ignition module or ECM fault"
+      ],
+      "recommended_first_check": "Remove the CKP sensor to inspect the magnetic tip for metallic debris and test sensor resistance/AC voltage output while cranking.",
+      "urgency": "high",
+      "reasoning": "The CKP sensor provides the critical engine position and timing reference needed for the ignition system to operate. A weak, shorted, or absent signal will prevent the ignition from firing properly, resulting in a no-start condition or engine stalling. These specific codes strongly point to a physical failure of the sensor itself or its immediate wiring circuit."
+    }
+  },
+  "shared_root_cause_keywords": [
+    "sensor"
+  ],
+  "root_cause_agreement": "3 of 3 models shared the keyword(s) ['sensor'] in their primary root cause",
+  "urgency_values": [
+    "high",
+    "high",
+    "high"
+  ],
+  "urgency_agreement": true,
+  "honesty_note": "Agreement figures above are literal keyword overlap on this single query, not a validated accuracy score."
+}

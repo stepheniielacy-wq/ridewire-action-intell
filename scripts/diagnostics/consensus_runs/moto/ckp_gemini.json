@@ -1,0 +1,11 @@
+{
+  "primary_root_cause": "Faulty Crankshaft Position (CKP) sensor",
+  "other_likely_causes": [
+    "Damaged wiring harness or loose connector",
+    "Metallic debris buildup on the magnetic sensor tip",
+    "Ignition module or ECM fault"
+  ],
+  "recommended_first_check": "Remove the CKP sensor to inspect the magnetic tip for metallic debris and test sensor resistance/AC voltage output while cranking.",
+  "urgency": "high",
+  "reasoning": "The CKP sensor provides the critical engine position and timing reference needed for the ignition system to operate. A weak, shorted, or absent signal will prevent the ignition from firing properly, resulting in a no-start condition or engine stalling. These specific codes strongly point to a physical failure of the sensor itself or its immediate wiring circuit."
+}

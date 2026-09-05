@@ -1,0 +1,11 @@
+{
+  "primary_root_cause": "Failed voltage regulator or stator",
+  "other_likely_causes": [
+    "Loose or corroded battery terminal connections",
+    "Degraded or internally shorted battery",
+    "Damaged wiring harness or poor ground connection"
+  ],
+  "recommended_first_check": "Test battery voltage with a multimeter across the terminals at rest and at 2000+ RPM to confirm lack of charging.",
+  "urgency": "high",
+  "reasoning": "A P0562 code specifically indicates that the ECM is not seeing charging voltage when the engine speed increases. This almost always points to a failure of the stator to generate AC voltage or the voltage regulator failing to rectify and regulate that output to the battery. Immediate attention is required as the motorcycle is running purely on battery reserve and will stall once voltage drops below the threshold required to run the ignition and fuel injection systems."
+}

@@ -1,0 +1,73 @@
+{
+  "code": "C1032 / C1034",
+  "platform": "Harley-Davidson ABS-equipped Touring and related models (front = C1032, rear = C1034)",
+  "code_description": "Wheel Speed Sensor Circuit Open or Shorted (Front or Rear). Per a Harley-Davidson electrical diagnostic manual excerpt reproduced by an owner, the DTC sets when the ABS module detects: a short to ground on either the high or low side circuit of the wheel speed sensor; an open on either the high or low side circuit; a short to voltage on the low side causing voltage above 0.79V; or the wheel speed sensor itself being open. When set, the ABS module disables ABS function and illuminates the ABS indicator.",
+  "family": "Brake / ABS (wheel speed sensor circuit)",
+  "verified_likely_causes": [
+    "A broken or pinched wheel speed sensor wire, commonly at the steering neck/fork area where the harness can stretch or rub when the handlebars are turned to full lock",
+    "Open circuit in either of the wheel speed sensor's high- or low-side wires, or a short to ground in the sensor wiring",
+    "A failed/open wheel speed sensor itself, or a short to battery voltage on the low-side circuit"
+  ],
+  "verified_first_check": "Per the Harley-Davidson diagnostic manual procedure, first inspect the wheel speed sensor wiring harness for physical damage (especially at the steering-neck/fork area for the front sensor), then use a breakout box / ohmmeter to check continuity between the ABS module connector and the wheel speed sensor connector; a broken or intermittent wire (frequently found at the neck where the harness contacts the frame at steering lock) is the most commonly reported real-world cause.",
+  "verified_sources": [
+    "https://www.hdforums.com/forum/touring-models/547091-anti-lock-brake-light-is-staying-on.html",
+    "https://www.hdforums.com/forum/touring-models/1281928-abs-fault-1032-a.html",
+    "https://static.nhtsa.gov/odi/rcl/2019/RCMN-19V843-1027.pdf"
+  ],
+  "verified_confidence_note": "Moderate-strong: the primary source is a hdforums.com thread that reproduces what its poster states is the verbatim Harley-Davidson diagnostic-manual page for 'DTC C1032, C1034: WHEEL SPEED SENSOR CIRCUIT OPEN OR SHORTED (FRONT OR REAR)', including specific tool part numbers (HD-41404-B, HD-48642) that support it being genuine dealer service literature rather than a paraphrase. This is independently corroborated by a second, separate hdforums.com thread describing a real-world C1032 case with a broken sensor wire at the steering neck as the root cause, and further supported contextually by an official NHTSA-hosted Harley-Davidson safety recall notice (Campaign 0175, RCMN-19V843-1027) confirming that faulty wheel-speed-sensor signals are a documented, safety-relevant fault class on Harley-Davidson ABS/traction-control-equipped motorcycles (Trike platform). IMPORTANT CAVEAT: an NHTSA-hosted bulletin literally titled 'M16-12-02 ABS Wheel Speed Sensor Diagnostics' with matching C1032/C1033/C1034/C1035 code numbers was initially found and looked like a strong third source, but on closer inspection it applies to the MV-1 wheelchair-accessible vehicle (Mobility Ventures LLC), NOT a Harley-Davidson motorcycle -- it was deliberately excluded from the sources list to avoid conflating an unrelated vehicle's identical-looking code numbers with Harley's own C-code family. Because full manufacturer PDF diagnostic-manual pages for C1032 could not be independently located on a second fully separate hosting source, this code is rated moderate-strong rather than fully verified against two wholly independent primary documents.",
+  "generated_at_utc": "2026-09-05T16:06:05.127366+00:00",
+  "models_queried": [
+    "Claude Sonnet 5",
+    "GPT-5.6 Terra",
+    "Gemini 3.1 Pro"
+  ],
+  "per_model_diagnosis": {
+    "Claude Sonnet 5": {
+      "primary_root_cause": "Damaged, corroded, or disconnected wheel speed sensor wiring/connector (open or shorted circuit)",
+      "other_likely_causes": [
+        "Failed wheel speed sensor (internal open/short)",
+        "Excessive air gap or debris/metal shavings between sensor and tone ring",
+        "Damaged or missing tone ring (reluctor) teeth",
+        "Corrosion or moisture intrusion at connector pins",
+        "Chafed harness from wheel/suspension movement causing intermittent short to ground or voltage",
+        "ABS module fault (less common than wiring/sensor issues)"
+      ],
+      "recommended_first_check": "Visually inspect and ohm-test the affected wheel speed sensor and its wiring harness/connector (front for C1032, rear for C1034) for continuity, correct resistance, corrosion, and physical damage, and check sensor air gap to the tone ring",
+      "urgency": "high",
+      "reasoning": "C1032/C1034 indicate the ABS module has detected an electrical fault (open or short) or a degraded signal in the wheel speed sensor circuit, which most commonly stems from wiring/connector damage or a failing sensor rather than the ABS module itself. Since ABS fully disables when this code sets, the bike loses anti-lock protection, making this a high-urgency safety issue that should be diagnosed before continued riding, especially in wet or low-traction conditions."
+    },
+    "GPT-5.6 Terra": {
+      "primary_root_cause": "Damaged or disconnected wheel-speed-sensor wiring or connector",
+      "other_likely_causes": [
+        "Failed wheel-speed sensor internal circuit",
+        "Corroded or water-contaminated sensor connector or terminals",
+        "Harness chafing near the fork, swingarm, or wheel causing an intermittent short"
+      ],
+      "recommended_first_check": "Disconnect the affected front (C1032) or rear (C1034) wheel-speed-sensor connector and inspect the lead and terminals, then check the sensor circuit for continuity and shorts while flexing the harness.",
+      "urgency": "high",
+      "reasoning": "The code is set when the ABS module sees an open, short-to-ground, short-to-voltage, or electrically failed wheel-speed-sensor circuit. Harness damage and connector faults are more common than an ABS module fault, especially where the sensor lead moves with suspension or steering; ABS is disabled while the fault is active."
+    },
+    "Gemini 3.1 Pro": {
+      "primary_root_cause": "Damaged wheel speed sensor wiring or faulty sensor",
+      "other_likely_causes": [
+        "Failed or incorrectly installed ABS encoder wheel bearing",
+        "Corrosion or loose connection at the ABS module harness",
+        "Debris or metal shavings interfering with the sensor"
+      ],
+      "recommended_first_check": "Visually inspect the wheel speed sensor wiring for chafing or breaks, and check the connector for corrosion.",
+      "urgency": "high",
+      "reasoning": "Codes C1032 and C1034 indicate a circuit-level failure such as an open or shorted connection in the front or rear wheel speed sensor system. Without a reliable speed signal, the ABS module will disable the anti-lock braking function, which significantly increases safety risks during hard braking events."
+    }
+  },
+  "shared_root_cause_keywords": [
+    "damaged"
+  ],
+  "root_cause_agreement": "3 of 3 models shared the keyword(s) ['damaged'] in their primary root cause",
+  "urgency_values": [
+    "high",
+    "high",
+    "high"
+  ],
+  "urgency_agreement": true,
+  "honesty_note": "Agreement figures above are literal keyword overlap on this single query, not a validated accuracy score."
+}

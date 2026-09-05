@@ -1,0 +1,11 @@
+{
+  "primary_root_cause": "Damaged wheel speed sensor wiring or faulty sensor",
+  "other_likely_causes": [
+    "Failed or incorrectly installed ABS encoder wheel bearing",
+    "Corrosion or loose connection at the ABS module harness",
+    "Debris or metal shavings interfering with the sensor"
+  ],
+  "recommended_first_check": "Visually inspect the wheel speed sensor wiring for chafing or breaks, and check the connector for corrosion.",
+  "urgency": "high",
+  "reasoning": "Codes C1032 and C1034 indicate a circuit-level failure such as an open or shorted connection in the front or rear wheel speed sensor system. Without a reliable speed signal, the ABS module will disable the anti-lock braking function, which significantly increases safety risks during hard braking events."
+}

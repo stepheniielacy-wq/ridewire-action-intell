@@ -1,0 +1,71 @@
+{
+  "code": "P0131",
+  "platform": "Harley-Davidson Twin Cam / Milwaukee-Eight EFI models with closed-loop fuel injection (Softail, Touring, Dyna, Sportster)",
+  "code_description": "Front Oxygen Sensor Low (also documented as \"Front O2 sensor low (lean)\" / \"Front O2 sensor lean for any length of time\"). Indicates the ECM has detected a persistently low-voltage (lean) signal from the front cylinder's oxygen sensor.",
+  "family": "Fuel injection / lean-rich (O2 sensor circuit)",
+  "verified_likely_causes": [
+    "Exhaust air leak near the front oxygen sensor or head pipe (e.g., a cracked header or loose flange), which draws outside air past the sensor and reads falsely lean",
+    "An actual lean fuel condition on the front cylinder, most often from a plugged or failing front fuel injector",
+    "A misfire (ignition or fuel related) that increases oxygen content in the exhaust and mimics a lean signal, or a failing/degraded O2 sensor that can't produce its normal 0.0-1.0V signal range",
+    "Loose or improperly torqued O2 sensor, or damaged sensor wiring/connector causing high circuit resistance"
+  ],
+  "verified_first_check": "Inspect the exhaust system for leaks, starting at the front head pipe/flange bolts and the O2 sensor's mounting torque and seal; if no leak is found, check harness resistance between the ECM and front oxygen sensor connector for values indicating a ground short or open circuit (per the diagnostic manual procedure: resistance greater than 1 megohm indicates a sensor fault, requiring sensor replacement; lower resistance indicates a wiring short requiring harness repair).",
+  "verified_sources": [
+    "https://www.hdforums.com/forum/touring-models/1438891-dtc-p0131-experience.html",
+    "https://www.hdforums.com/forum/exhaust-system-topics/786078-engine-error-code-p0131.html",
+    "https://www.hdforums.com/forum/softail-models/533269-dtc-p0131-possible-causes-2.html"
+  ],
+  "verified_confidence_note": "Strong: root causes and the code description are corroborated across three independent hdforums.com threads describing separate real-world cases (a cracked front header pipe, a stripped/loose O2 sensor, and general troubleshooting guidance), all reporting the same code name and consistent with standard closed-loop fuel-injection O2-sensor diagnostic logic. Note: the specific harness-resistance diagnostic procedure (1 megohm threshold) is drawn from a Subaru service-manual document found on Scribd describing an analogous P0131 O2 Sensor Circuit Low Voltage procedure -- it is NOT confirmed to be from a Harley-Davidson-specific manual, so it is presented here only as a representative generic O2-sensor-circuit diagnostic step, not as an HD-verified procedure. The Harley-specific 'first check' recommendation (exhaust leak inspection) is the one directly corroborated by Harley owner/technical sources.",
+  "generated_at_utc": "2026-09-05T16:06:05.126885+00:00",
+  "models_queried": [
+    "Claude Sonnet 5",
+    "GPT-5.6 Terra",
+    "Gemini 3.1 Pro"
+  ],
+  "per_model_diagnosis": {
+    "Claude Sonnet 5": {
+      "primary_root_cause": "Front cylinder intake air leak (vacuum leak or unmetered air) causing lean condition",
+      "other_likely_causes": [
+        "Degraded or contaminated front O2 sensor giving a false persistent-lean reading",
+        "Front injector clogged or underperforming (low fuel delivery)",
+        "Damaged, corroded, or poorly grounded O2 sensor wiring/connector",
+        "Intake manifold or throttle body gasket leak at front cylinder",
+        "Low fuel pressure from a weak fuel pump or clogged fuel filter"
+      ],
+      "recommended_first_check": "Inspect front cylinder intake manifold, throttle body, and vacuum fittings for leaks using a carb-cleaner spray or smoke test while watching for RPM change or fuel trim shift",
+      "urgency": "medium",
+      "reasoning": "P0131 indicates the ECM sees a sustained low-voltage signal from the front O2 sensor, which almost always reflects a genuinely lean mixture rather than sensor failure alone, and unmetered air entering through a vacuum or intake leak is the most common real-world cause on Twin Cam/M8 platforms. It's not an immediate safety-critical failure like a dropped cylinder or overheating, but riding lean for extended periods risks detonation and exhaust valve damage, so it should be diagnosed soon rather than ignored."
+    },
+    "GPT-5.6 Terra": {
+      "primary_root_cause": "Front O2 sensor or its wiring producing a persistently low signal",
+      "other_likely_causes": [
+        "Unmetered air leak at the front-cylinder intake or exhaust",
+        "Low fuel delivery or a partially restricted front-cylinder injector",
+        "Exhaust leak upstream of the front O2 sensor"
+      ],
+      "recommended_first_check": "Inspect the front O2 sensor connector and harness for loose pins, heat damage, or chafing, then confirm the sensor signal responds to a commanded rich condition.",
+      "urgency": "medium",
+      "reasoning": "P0131 is set when the ECM continues to see a low-voltage front O2 signal, which can represent either a genuinely lean front cylinder or a sensor/circuit fault. Start with the exposed sensor wiring and connector, then distinguish a failed sensor from intake, exhaust, injector, or fuel-supply causes by checking whether its voltage changes when mixture is enriched."
+    },
+    "Gemini 3.1 Pro": {
+      "primary_root_cause": "Unmetered air from an intake manifold or exhaust leak",
+      "other_likely_causes": [
+        "Faulty front oxygen sensor",
+        "Damaged O2 sensor wiring or loose connection",
+        "Clogged front fuel injector or low fuel pressure"
+      ],
+      "recommended_first_check": "Visually inspect the front exhaust header for soot (indicating a leak) and test the front intake manifold seal for vacuum leaks.",
+      "urgency": "medium",
+      "reasoning": "A persistently low voltage signal from the front O2 sensor indicates a lean burn condition, typically caused by excess air entering the system rather than a fueling issue. While a failed sensor is possible, intake vacuum leaks or exhaust leaks near the sensor are the most frequent culprits. Prolonged lean operation can cause excessive cylinder heat and damage, making timely diagnosis important."
+    }
+  },
+  "shared_root_cause_keywords": [],
+  "root_cause_agreement": "0 of 3 models used overlapping words for primary root cause - no agreement detected",
+  "urgency_values": [
+    "medium",
+    "medium",
+    "medium"
+  ],
+  "urgency_agreement": true,
+  "honesty_note": "Agreement figures above are literal keyword overlap on this single query, not a validated accuracy score."
+}

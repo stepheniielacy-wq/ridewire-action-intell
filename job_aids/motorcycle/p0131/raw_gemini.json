@@ -1,0 +1,11 @@
+{
+  "primary_root_cause": "Unmetered air from an intake manifold or exhaust leak",
+  "other_likely_causes": [
+    "Faulty front oxygen sensor",
+    "Damaged O2 sensor wiring or loose connection",
+    "Clogged front fuel injector or low fuel pressure"
+  ],
+  "recommended_first_check": "Visually inspect the front exhaust header for soot (indicating a leak) and test the front intake manifold seal for vacuum leaks.",
+  "urgency": "medium",
+  "reasoning": "A persistently low voltage signal from the front O2 sensor indicates a lean burn condition, typically caused by excess air entering the system rather than a fueling issue. While a failed sensor is possible, intake vacuum leaks or exhaust leaks near the sensor are the most frequent culprits. Prolonged lean operation can cause excessive cylinder heat and damage, making timely diagnosis important."
+}

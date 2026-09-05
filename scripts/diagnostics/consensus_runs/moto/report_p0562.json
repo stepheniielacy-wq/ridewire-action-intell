@@ -1,0 +1,71 @@
+{
+  "code": "P0562",
+  "platform": "Harley-Davidson Twin Cam / Milwaukee-Eight EFI and Carbureted models (ECM), e.g. Dyna, Softail, Touring, Sportster",
+  "code_description": "Battery Voltage Low (ECM), also referred to in dealer documentation as \"ECM voltage low\" or \"System Voltage Low\". Per the Harley-Davidson Electrical Diagnostics Manual, DTC P0562 sets when battery voltage is less than 12.2 volts at idle and voltage does not increase when engine speed is greater than 2000 RPM. When P0562 or its high-voltage counterpart P0563 sets, the battery icon in the speedometer illuminates.",
+  "family": "Charging system / electrical",
+  "verified_likely_causes": [
+    "Charging system malfunction (failed stator or bad voltage regulator/rectifier) preventing voltage from rising above idle level",
+    "Loose, corroded, or high-resistance battery/ground connections",
+    "Weak or failing battery, or excessive battery draw / extended idling in heavy traffic causing voltage sag",
+    "TSSM/HFSM (security module) fault, which per the HD manual can also set P0562 or P0563"
+  ],
+  "verified_first_check": "Per Harley-Davidson's official Low/No Charging Diagnostics bulletin (M1507), the first step is to perform a battery test (load/charge test); if the battery passes, proceed to inspect and clean the main DC and AC charging-system connectors, then measure battery voltage with the engine running at 3,000 RPM to confirm it exceeds 13.8V before suspecting the stator or voltage regulator.",
+  "verified_sources": [
+    "https://www.hdforums.com/forum/dyna-glide-models/279560-need-help-with-code-p0562.html",
+    "https://static.nhtsa.gov/odi/tsbs/2022/MC-10228742-0001.pdf",
+    "https://www.hdforums.com/forum/sportster-models/1202901-2011-sportster-p0562-code.html"
+  ],
+  "verified_confidence_note": "Strong: verified against the actual quoted text of the 2008 Dyna Model Electrical Diagnostics Manual (via hdforums.com, a well-established Harley owner/technical forum whose thread reproduces the manual's exact detecting-condition and diagnostic-tip language), an official Harley-Davidson technical service bulletin (M1507, hosted by NHTSA) covering the same charging-system fault family on 2017-2023 Touring/Trike and 2018-2023 Softail platforms, and a second independent forum thread reproducing the identical manual language.",
+  "generated_at_utc": "2026-09-05T16:06:05.126558+00:00",
+  "models_queried": [
+    "Claude Sonnet 5",
+    "GPT-5.6 Terra",
+    "Gemini 3.1 Pro"
+  ],
+  "per_model_diagnosis": {
+    "Claude Sonnet 5": {
+      "primary_root_cause": "Weak, undercharged, or failing battery unable to hold voltage above 12.2V at idle",
+      "other_likely_causes": [
+        "Faulty or underperforming charging system (stator/alternator or voltage regulator not raising output above idle level as RPM increases)",
+        "Corroded, loose, or high-resistance battery cable/ground connections",
+        "Parasitic electrical draw from accessories draining battery faster than charging system replenishes it",
+        "Failed or degraded voltage regulator rectifier not properly regulating charging voltage"
+      ],
+      "recommended_first_check": "Load-test the battery and measure static/cranking voltage; if battery is good, check charging system output (stator AC voltage and regulated DC voltage at battery) at idle and at 2000+ RPM",
+      "urgency": "medium",
+      "reasoning": "P0562 is triggered purely on measured voltage thresholds, so the most common and easiest-to-rule-out cause is a weak or aged battery, followed by a charging system that fails to boost voltage as RPM rises. Corroded connections and grounds are also frequent culprits since they cause voltage drop independent of battery or stator health. Urgency is medium because the bike will likely still run in the short term but risks a no-start or stall if charging voltage continues to sag, especially at night with lights/accessories loading the system."
+    },
+    "GPT-5.6 Terra": {
+      "primary_root_cause": "Charging system output failure (voltage regulator or stator)",
+      "other_likely_causes": [
+        "Weak or sulfated battery",
+        "Loose, corroded, or high-resistance battery, ground, or charging connections"
+      ],
+      "recommended_first_check": "Measure voltage directly across the battery terminals at idle and again above 2000 RPM with a digital multimeter; it should rise when engine speed increases.",
+      "urgency": "high",
+      "reasoning": "P0562 sets when the ECM sees battery voltage below 12.2 V at idle and no voltage increase above 2000 RPM, which most strongly indicates the battery is not being charged while the engine runs. Confirming battery-terminal voltage first separates a charging-output fault from a failed battery or resistance in the battery and ground connections."
+    },
+    "Gemini 3.1 Pro": {
+      "primary_root_cause": "Failed voltage regulator or stator",
+      "other_likely_causes": [
+        "Loose or corroded battery terminal connections",
+        "Degraded or internally shorted battery",
+        "Damaged wiring harness or poor ground connection"
+      ],
+      "recommended_first_check": "Test battery voltage with a multimeter across the terminals at rest and at 2000+ RPM to confirm lack of charging.",
+      "urgency": "high",
+      "reasoning": "A P0562 code specifically indicates that the ECM is not seeing charging voltage when the engine speed increases. This almost always points to a failure of the stator to generate AC voltage or the voltage regulator failing to rectify and regulate that output to the battery. Immediate attention is required as the motorcycle is running purely on battery reserve and will stall once voltage drops below the threshold required to run the ignition and fuel injection systems."
+    }
+  },
+  "shared_root_cause_keywords": [
+    "voltage"
+  ],
+  "root_cause_agreement": "3 of 3 models shared the keyword(s) ['voltage'] in their primary root cause",
+  "urgency_values": [
+    "medium",
+    "high",
+    "high"
+  ],
+  "urgency_agreement": false,
+  "honesty_note": "Agreement figures above are literal keyword overlap on this single query, not a validated accuracy score."
+}
