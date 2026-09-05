@@ -1,0 +1,7 @@
+{
+  "primary_root_cause": "vacuum leak (intake or hose)",
+  "other_likely_causes": ["faulty MAF sensor", "failing upstream oxygen sensor", "leaking/degraded intake manifold gasket or PCV system"],
+  "recommended_first_check": "Inspect intake system and vacuum hoses for cracks or disconnections using a smoke test, and visually check the PCV valve and hose connections",
+  "urgency": "medium",
+  "reasoning": "P0171 indicates the ECU is commanding more fuel than normal to compensate for a lean condition on Bank 1, most commonly caused by unmetered air entering through a vacuum leak, a dirty or failing MAF sensor giving inaccurate airflow readings, or a degraded PCV/intake gasket. It's not an immediate safety emergency, but prolonged lean operation can cause rough idle, poor fuel economy, and potential catalytic converter damage from sustained high exhaust temperatures, so it warrants prompt but not urgent attention."
+}

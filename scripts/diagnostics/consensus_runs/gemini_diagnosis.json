@@ -1,0 +1,12 @@
+{
+  "primary_root_cause": "Vacuum leak",
+  "other_likely_causes": [
+    "Faulty MAF sensor",
+    "Low fuel pressure",
+    "Clogged fuel injectors",
+    "Defective O2 sensor"
+  ],
+  "recommended_first_check": "Perform a smoke test or visual inspection of the intake system for vacuum leaks.",
+  "urgency": "medium",
+  "reasoning": "A P0171 code indicates that Bank 1 is running lean due to either too much unmetered air entering the engine or insufficient fuel delivery. A vacuum leak is the most frequent cause of unmetered air, followed by a dirty or failing MAF sensor. Identifying and eliminating vacuum leaks is the most logical and cost-effective first step in the diagnostic process."
+}

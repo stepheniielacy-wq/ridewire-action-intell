@@ -1,0 +1,11 @@
+{
+  "primary_root_cause": "unmetered intake air leak (vacuum leak)",
+  "other_likely_causes": [
+    "contaminated or under-reporting MAF sensor",
+    "low fuel pressure or restricted fuel delivery",
+    "upstream exhaust leak near the oxygen sensor"
+  ],
+  "recommended_first_check": "Perform a smoke test of the intake tract, vacuum hoses, PCV system, and intake-manifold gasket for leaks.",
+  "urgency": "medium",
+  "reasoning": "P0171 means the PCM has reached a sustained positive fuel-trim correction because Bank 1 is reporting excess oxygen. An unmetered-air leak is a common cause, particularly if lean trims are greatest at idle; if no leak is found, verify MAF readings and fuel pressure/delivery before condemning the oxygen sensor."
+}
