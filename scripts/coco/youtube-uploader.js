@@ -23,8 +23,30 @@ class YouTubeUploader {
     this.clientId = process.env.YOUTUBE_CLIENT_ID;
     this.clientSecret = process.env.YOUTUBE_CLIENT_SECRET;
     this.channelId = process.env.YOUTUBE_CHANNEL_ID;
-    
+    this.refreshToken = process.env.YOUTUBE_REFRESH_TOKEN;
+    this.oauth2Client = null;
+
     this.validateConfig();
+  }
+
+  /**
+   * Lazily build an authenticated OAuth2 client from the stored refresh token
+   */
+  getOAuth2Client() {
+    if (this.oauth2Client) return this.oauth2Client;
+
+    const { google } = require('googleapis');
+    const OAuth2 = google.auth.OAuth2;
+
+    const oauth2Client = new OAuth2(
+      this.clientId,
+      this.clientSecret,
+      'http://localhost:3000/oauth2callback'
+    );
+
+    oauth2Client.setCredentials({ refresh_token: this.refreshToken });
+    this.oauth2Client = oauth2Client;
+    return oauth2Client;
   }
 
   validateConfig() {
@@ -97,8 +119,8 @@ Powered by COCO AI - Educational Content Generator
   async uploadVideo(videoPath, metadata) {
     console.log(`\n📤 Uploading video to YouTube...\n`);
     
-    if (!this.clientId || !this.clientSecret) {
-      console.log('⚠️  YouTube credentials not configured');
+    if (!this.clientId || !this.clientSecret || !this.refreshToken) {
+      console.log('⚠️  YouTube credentials not fully configured (need client ID, secret, and refresh token)');
       console.log('📝 Simulating upload process...\n');
       
       // Simulate upload for demonstration
@@ -106,26 +128,16 @@ Powered by COCO AI - Educational Content Generator
     }
 
     try {
-      // In production, implement actual YouTube API upload here
-      // Use googleapis npm package: npm install googleapis
-      
-      /*
       const { google } = require('googleapis');
-      const OAuth2 = google.auth.OAuth2;
-      
-      const oauth2Client = new OAuth2(
-        this.clientId,
-        this.clientSecret,
-        'http://localhost:3000/oauth2callback'
-      );
-      
+      const fsSync = require('fs');
+
+      const oauth2Client = this.getOAuth2Client();
+
       const youtube = google.youtube({
         version: 'v3',
         auth: oauth2Client
       });
-      
-      const fileSize = (await fs.stat(videoPath)).size;
-      
+
       const response = await youtube.videos.insert({
         part: 'snippet,status',
         requestBody: {
@@ -137,20 +149,30 @@ Powered by COCO AI - Educational Content Generator
           },
           status: {
             privacyStatus: metadata.privacyStatus,
-            madeForKids: metadata.madeForKids
+            madeForKids: metadata.madeForKids,
+            ...(metadata.publishAt ? { publishAt: metadata.publishAt } : {})
           }
         },
         media: {
-          body: fs.createReadStream(videoPath)
+          body: fsSync.createReadStream(videoPath)
         }
       });
-      
-      return response.data;
-      */
-      
-      console.log('✅ Upload complete (simulated)');
-      return this.simulateUpload(videoPath, metadata);
-      
+
+      const videoId = response.data.id;
+      const videoUrl = `https://youtube.com/watch?v=${videoId}`;
+
+      console.log(`\n✅ Video uploaded successfully!`);
+      console.log(`📺 Video ID: ${videoId}`);
+      console.log(`🔗 URL: ${videoUrl}`);
+
+      return {
+        id: videoId,
+        url: videoUrl,
+        uploadedAt: new Date().toISOString(),
+        status: 'uploaded',
+        metadata
+      };
+
     } catch (error) {
       console.error('❌ Upload failed:', error.message);
       throw error;
@@ -208,16 +230,16 @@ Powered by COCO AI - Educational Content Generator
   async addToPlaylist(videoId, playlistId) {
     console.log(`\n📋 Adding video ${videoId} to playlist ${playlistId}...\n`);
     
-    if (!this.clientId) {
-      console.log('⚠️  YouTube credentials not configured, simulating...');
+    if (!this.clientId || !this.clientSecret || !this.refreshToken) {
+      console.log('⚠️  YouTube credentials not fully configured, simulating...');
       return { success: true, simulated: true };
     }
 
     try {
-      // In production, implement playlist API call
-      /*
+      const { google } = require('googleapis');
+      const oauth2Client = this.getOAuth2Client();
       const youtube = google.youtube({ version: 'v3', auth: oauth2Client });
-      
+
       await youtube.playlistItems.insert({
         part: 'snippet',
         requestBody: {
@@ -230,10 +252,9 @@ Powered by COCO AI - Educational Content Generator
           }
         }
       });
-      */
-      
-      console.log('✅ Video added to playlist (simulated)');
-      return { success: true, simulated: true };
+
+      console.log('✅ Video added to playlist');
+      return { success: true, simulated: false };
       
     } catch (error) {
       console.error('❌ Failed to add to playlist:', error.message);
