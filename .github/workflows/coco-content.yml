@@ -63,7 +63,12 @@ jobs:
           TOPIC=$(node -e "
           const ContentCalendar = require('./scripts/coco/content-calendar.js');
           const calendar = new ContentCalendar();
-          calendar.initialize().then(() => calendar.getNextTopic()).then(topic => {
+          const originalLog = console.log;
+          console.log = console.error;
+          calendar.initialize().then(() => {
+            console.log = originalLog;
+            return calendar.getNextTopic();
+          }).then(topic => {
             if (topic) {
               console.log(topic.title);
               process.exit(0);
